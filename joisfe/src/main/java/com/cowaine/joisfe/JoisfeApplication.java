@@ -1,0 +1,13 @@
+package com.cowaine.joisfe;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class JoisfeApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(JoisfeApplication.class, args);
+    }
+
+}

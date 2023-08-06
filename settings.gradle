@@ -1,0 +1,8 @@
+rootProject.name = 'spring-boot-for-msa'
+include 'ahngilwoong'
+include 'coalong'
+include 'corock'
+include 'crupy'
+include 'ding-cook'
+include 'joisfe'
+include 'youngju-jang'
