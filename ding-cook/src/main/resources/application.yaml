@@ -1,2 +1,6 @@
 server:
   port: 8888
+  tomcat:
+    threads:
+      max: 100
+      min-spare: 100
