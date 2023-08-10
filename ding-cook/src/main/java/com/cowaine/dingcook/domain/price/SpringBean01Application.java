@@ -17,10 +17,18 @@ public class SpringBean01Application {
 
         PriceUnit defaultPriceUnit = context.getBean("priceUnit", PriceUnit.class);
         log.info("Price #1: {}", defaultPriceUnit.format(BigDecimal.valueOf(10.2)));
+
+        PriceUnit wonPriceUnit = context.getBean("wonPriceUnit", PriceUnit.class);
+        log.info("Price #2: {}", wonPriceUnit.format(BigDecimal.valueOf(1000)));
     }
 
     @Bean(name = "priceUnit")
     public PriceUnit dollarPriceUnit() {
         return new PriceUnit(Locale.US);
+    }
+
+    @Bean
+    public PriceUnit wonPriceUnit() {
+        return new PriceUnit(Locale.KOREA);
     }
 }
