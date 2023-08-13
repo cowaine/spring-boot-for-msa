@@ -1,4 +1,4 @@
-package com.cowaine.dingcook.domain.price;
+package com.cowaine.dingcook.domain.ex01;
 
 import java.math.BigDecimal;
 import java.util.Locale;
