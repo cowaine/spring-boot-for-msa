@@ -22,8 +22,8 @@ public class YoungjuJangApplication {
         
         ThreadPoolTaskExecutor taskExecutor = ctx.getBean(ThreadPoolTaskExecutor.class);
         
-//        final String dateString = "2020-12-24T23:59:59.-08:00";
-        final String dateString = "2020-12-24T23:59:59";
+        final String dateString = "2020-12-24T23:59:59.-08:00";
+//        final String dateString = "2020-12-24T23:59:59";
         
         for(int i=0; i<100; i++){
             // submit 100회 실행
@@ -41,20 +41,9 @@ public class YoungjuJangApplication {
         ctx.close();
     }
     
-    @Bean // default Scope : singleton >> 여러곳에 의존성주입되어도 하나의 스프링빈이 된다.
-    public DateFormatter singletonDateFormatter(){
-        return new DateFormatter("yyyy-MM-dd'T'HH:mm:ss");
-    }
-    
-    @Bean (name="priceUnit")
-    @Scope("singleton")
-    public PriceUnit dollarPriceUnit(){
-        return new PriceUnit(Locale.US);
-    }
-    
     @Bean
     @Scope("prototype")
-    public PriceUnit wonPriceUnit(){
-        return new PriceUnit(Locale.KOREA);
+    public DateFormatter singletonDateFormatter(){
+        return new DateFormatter("yyyy-MM-dd'T'HH:mm:ss");
     }
 }
