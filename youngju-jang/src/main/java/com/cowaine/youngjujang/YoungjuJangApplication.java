@@ -1,7 +1,6 @@
 package com.cowaine.youngjujang;
 
-import com.cowaine.youngjujang.ch2.domain.DateFormatter;
-import com.cowaine.youngjujang.ch2.domain.PriceUnit;
+import com.cowaine.youngjujang.ch2_3.domain.DateFormatter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,7 +8,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import java.util.Locale;
+
 import java.util.concurrent.TimeUnit;
 
 

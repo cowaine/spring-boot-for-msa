@@ -1,4 +1,4 @@
-package com.cowaine.youngjujang.ch2.domain;
+package com.cowaine.youngjujang.ch2_3.domain;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
