@@ -1,4 +1,4 @@
-package com.cowaine.corock.chapter03;
+package com.cowaine.corock.chapter03.di;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

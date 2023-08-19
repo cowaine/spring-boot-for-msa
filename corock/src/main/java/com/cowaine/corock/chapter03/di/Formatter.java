@@ -1,4 +1,4 @@
-package com.cowaine.corock.chapter03;
+package com.cowaine.corock.chapter03.di;
 
 public interface Formatter<T> {
 

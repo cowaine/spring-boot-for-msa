@@ -1,6 +1,6 @@
 package com.cowaine.corock;
 
-import com.cowaine.corock.chapter03.Formatter;
+import com.cowaine.corock.chapter03.di.Formatter;
 import com.cowaine.corock.chapter03.PriceUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
