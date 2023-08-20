@@ -4,3 +4,6 @@ server:
     threads:
       min-spare: 100
       max: 100
+spring:
+  main:
+    allow-bean-definition-overriding: false
