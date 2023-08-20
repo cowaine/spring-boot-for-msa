@@ -1,7 +1,9 @@
 package com.cowaine.joisfe;
 
+import com.cowaine.joisfe.part3.Formatter;
 import com.cowaine.joisfe.part3.PriceUnit;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Locale;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
@@ -22,6 +24,10 @@ public class JoisfeApplication {
 
         PriceUnit wonPriceUnit = ctxt.getBean("wonPriceUnit", PriceUnit.class);
         log.info("Price #2 : {}", wonPriceUnit.format(BigDecimal.valueOf(1000)));
+
+        Formatter<LocalDateTime> formatter = ctxt.getBean("localDateTimeFormatter", Formatter.class);
+        String date = formatter.of(LocalDateTime.of(2020, 12, 24, 23, 59, 59));
+        log.info("Date : " + date);
 
         ctxt.close();
     }
