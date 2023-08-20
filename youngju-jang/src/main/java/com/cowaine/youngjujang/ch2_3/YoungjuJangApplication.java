@@ -1,4 +1,4 @@
-package com.cowaine.youngjujang;
+package com.cowaine.youngjujang.ch2_3;
 
 import com.cowaine.youngjujang.ch2_3.domain.*;
 import lombok.extern.slf4j.Slf4j;
@@ -7,10 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.*;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 
 @Slf4j
