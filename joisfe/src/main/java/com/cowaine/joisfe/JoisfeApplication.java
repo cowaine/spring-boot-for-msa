@@ -2,11 +2,14 @@ package com.cowaine.joisfe;
 
 import com.cowaine.joisfe.part3.DateFormatter;
 import com.cowaine.joisfe.part3.Formatter;
+import com.cowaine.joisfe.part3.LifeCycleComponent;
 import com.cowaine.joisfe.part3.PriceUnit;
+import com.cowaine.joisfe.part3.PrintableBeanPostProcessor;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Locale;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -66,5 +69,15 @@ public class JoisfeApplication {
     @Scope("prototype")
     public DateFormatter singletonDateFormatter() {
         return new DateFormatter("yyyy-MM-dd'T'HH:mm:ss");
+    }
+
+    @Bean(initMethod = "init", destroyMethod = "clear")
+    public LifeCycleComponent lifeCycleComponent() {
+        return new LifeCycleComponent();
+    }
+
+    @Bean
+    public BeanPostProcessor beanPostProcessor() {
+        return new PrintableBeanPostProcessor();
     }
 }
