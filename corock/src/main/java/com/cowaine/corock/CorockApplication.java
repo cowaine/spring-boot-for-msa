@@ -1,6 +1,6 @@
 package com.cowaine.corock;
 
-import com.cowaine.corock.chapter03.PriceUnit;
+import com.cowaine.corock.chapter03.domain.PriceUnit;
 import com.cowaine.corock.chapter03.di.DateFormatter;
 import com.cowaine.corock.chapter03.di.Formatter;
 import com.cowaine.corock.chapter03.lifecycle.LifeCycleComponent;
@@ -11,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
@@ -35,11 +36,18 @@ public class CorockApplication {
         // CorockApplication.p121(ctx);
         // CorockApplication.p148(ctx);
         // CorockApplication.p158(ctx);
+        // CorockApplication.p160(ctx);
 
-        Object obj = ctx.getBean("systemId");
-        log.warn("Bean Info. type: {}, value: {}", obj.getClass(), obj);
+        log.info("------- Done to initialize spring beans");
+        PriceUnit priceUnit = ctx.getBean("lazyPriceUnit", PriceUnit.class);
+        log.info("Locale in PriceUnit: {}", priceUnit.getLocale().toString());
 
         ctx.close();
+    }
+
+    private static void p160(ConfigurableApplicationContext ctx) {
+        Object obj = ctx.getBean("systemId");
+        log.warn("Bean Info. type: {}, value: {}", obj.getClass(), obj);
     }
 
     private static void p99(ConfigurableApplicationContext ctx) {
@@ -67,12 +75,19 @@ public class CorockApplication {
      * 스프링 빈을 정의한다.
      *
      * @return {@link PriceUnit}
-     * @throws org.springframework.beans.factory.NoUniqueBeanDefinitionException No qualifying bean of type 'com.cowaine.corock.chapter03.PriceUnit' available: expected single matching bean but found 2: priceUnit,wonPriceUnit
+     * @throws org.springframework.beans.factory.NoUniqueBeanDefinitionException No qualifying bean of type 'com.cowaine.corock.chapter03.domain.PriceUnit' available: expected single matching bean but found 2: priceUnit,wonPriceUnit
      */
     @Primary
     @Bean(name = "priceUnit")
     public PriceUnit dollarPriceUnit() {
         return new PriceUnit(Locale.US);
+    }
+
+    @Lazy
+    @Bean
+    public PriceUnit lazyPriceUnit() {
+        log.info("initialize lazyPriceUnit");
+        return new PriceUnit(Locale.KOREAN);
     }
 
     @Bean
@@ -111,12 +126,12 @@ public class CorockApplication {
         return new DateFormatter("yyyy-MM-dd'T'HH:mm:ss");
     }
 
-    @Bean(initMethod = "init", destroyMethod = "clear")
+    // @Bean(initMethod = "init", destroyMethod = "clear")
     public LifeCycleComponent lifeCycleComponent() {
         return new LifeCycleComponent();
     }
 
-    @Bean
+    // @Bean
     public BeanPostProcessor beanPostProcessor() {
         return new PrintableBeanPostProcessor();
     }
