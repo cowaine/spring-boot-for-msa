@@ -37,7 +37,10 @@ public class CorockApplication {
         // CorockApplication.p148(ctx);
         // CorockApplication.p158(ctx);
         // CorockApplication.p160(ctx);
+        // CorockApplication.p162(ctx);
+    }
 
+    private static void p162(ConfigurableApplicationContext ctx) {
         log.info("------- Done to initialize spring beans");
         PriceUnit priceUnit = ctx.getBean("lazyPriceUnit", PriceUnit.class);
         log.info("Locale in PriceUnit: {}", priceUnit.getLocale().toString());

@@ -1,6 +1,14 @@
 server:
   port: 20420
   tomcat:
+    accesslog:
+      enabled: true
+      suffix: log
+      prefix: access_log
+      rename-on-rotate: true
+
+    connection-timeout: 30s
+
     threads:
       min-spare: 100
       max: 100
