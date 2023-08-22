@@ -1,7 +1,5 @@
 package com.cowaine.corock.chapter03.di;
 
-import com.cowaine.corock.chapter03.User;
-
 public class NotificationService {
 
     private final Sender messageSender;
