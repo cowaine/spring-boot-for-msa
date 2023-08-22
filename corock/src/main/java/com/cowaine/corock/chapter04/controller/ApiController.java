@@ -2,24 +2,21 @@ package com.cowaine.corock.chapter04.controller;
 
 import com.cowaine.corock.chapter04.domain.Hotel;
 import com.cowaine.corock.chapter04.domain.HotelSearchService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@AllArgsConstructor
+@RestController
+@RequiredArgsConstructor
 public class ApiController {
 
-    private HotelSearchService hotelSearchService;
+    private final HotelSearchService hotelSearchService;
 
-    @ResponseBody
-    @RequestMapping(method = RequestMethod.GET, path = "/hotels/{hotelId}")
-    public ResponseEntity<Hotel> getHotelById(@PathVariable("hotelId") Long hotelId) {
-        Hotel hotel = hotelSearchService.getHotelById(hotelId);
+    @GetMapping(path = "/hotels/{hotelId}")
+    public ResponseEntity<Hotel> getHotelById(@PathVariable("hotelId") final Long id) {
+        Hotel hotel = hotelSearchService.getHotelById(id);
         return ResponseEntity.ok(hotel);
     }
 
