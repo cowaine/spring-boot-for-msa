@@ -3,7 +3,10 @@ package com.cowaine.corock;
 import com.cowaine.corock.chapter03.PriceUnit;
 import com.cowaine.corock.chapter03.di.DateFormatter;
 import com.cowaine.corock.chapter03.di.Formatter;
+import com.cowaine.corock.chapter03.lifecycle.LifeCycleComponent;
+import com.cowaine.corock.chapter03.lifecycle.PrintableBeanPostProcessor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -23,28 +26,13 @@ import java.util.stream.IntStream;
 @SpringBootApplication
 public class CorockApplication {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         ConfigurableApplicationContext ctx = SpringApplication.run(CorockApplication.class, args);
 
         // CorockApplication.p99(ctx);
         // CorockApplication.p110(ctx);
         // CorockApplication.p121(ctx);
-
-        ThreadPoolTaskExecutor taskExecutor = ctx.getBean(ThreadPoolTaskExecutor.class);
-        final String dateString = "2020-12-24T23:59:59.-08:00";
-
-        for (int i = 0; i < 100; i++) {
-            taskExecutor.submit(() -> {
-                DateFormatter dateFormatter = ctx.getBean("singletonDateFormatter", DateFormatter.class);
-                try {
-                    log.info("Date: {}, hashCode: {}", dateFormatter.parse(dateString), dateFormatter.hashCode());
-                } catch (ParseException e) {
-                    log.error("error to parse", e);
-                }
-            });
-        }
-
-        TimeUnit.SECONDS.sleep(5);
+        // CorockApplication.p148(ctx);
 
         ctx.close();
     }
@@ -87,10 +75,38 @@ public class CorockApplication {
         log.info("Date: " + date);
     }
 
+    private static void p148(ConfigurableApplicationContext ctx) throws InterruptedException {
+        ThreadPoolTaskExecutor taskExecutor = ctx.getBean(ThreadPoolTaskExecutor.class);
+        final String dateString = "2020-12-24T23:59:59.-08:00";
+
+        for (int i = 0; i < 100; i++) {
+            taskExecutor.submit(() -> {
+                DateFormatter dateFormatter = ctx.getBean("singletonDateFormatter", DateFormatter.class);
+                try {
+                    log.info("Date: {}, hashCode: {}", dateFormatter.parse(dateString), dateFormatter.hashCode());
+                } catch (ParseException e) {
+                    log.error("error to parse", e);
+                }
+            });
+        }
+
+        TimeUnit.SECONDS.sleep(5);
+    }
+
     @Scope(scopeName = "prototype")
     @Bean
     public DateFormatter singletonDateFormatter() {
         return new DateFormatter("yyyy-MM-dd'T'HH:mm:ss");
+    }
+
+    @Bean(initMethod = "init", destroyMethod = "clear")
+    public LifeCycleComponent lifeCycleComponent() {
+        return new LifeCycleComponent();
+    }
+
+    @Bean
+    public BeanPostProcessor beanPostProcessor() {
+        return new PrintableBeanPostProcessor();
     }
 
 }
