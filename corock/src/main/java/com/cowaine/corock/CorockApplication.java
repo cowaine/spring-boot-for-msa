@@ -34,9 +34,10 @@ public class CorockApplication {
         // CorockApplication.p110(ctx);
         // CorockApplication.p121(ctx);
         // CorockApplication.p148(ctx);
+        // CorockApplication.p158(ctx);
 
-        PriceUnit priceUnit = ctx.getBean(PriceUnit.class);
-        log.info("Locale in PriceUnit: {}", priceUnit.getLocale().toString());
+        Object obj = ctx.getBean("systemId");
+        log.warn("Bean Info. type: {}, value: {}", obj.getClass(), obj);
 
         ctx.close();
     }
@@ -118,6 +119,11 @@ public class CorockApplication {
     @Bean
     public BeanPostProcessor beanPostProcessor() {
         return new PrintableBeanPostProcessor();
+    }
+
+    private static void p158(ConfigurableApplicationContext ctx) {
+        PriceUnit priceUnit = ctx.getBean(PriceUnit.class);
+        log.info("Locale in PriceUnit: {}", priceUnit.getLocale().toString());
     }
 
 }

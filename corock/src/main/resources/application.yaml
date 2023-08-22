@@ -4,3 +4,9 @@ server:
     threads:
       min-spare: 100
       max: 100
+
+spring:
+  main:
+    # 스프링 빈 이름을 중복하여 선언하는 경우 BeanDefinitionOverrideException 예외가 발생하는데,
+    # 스프링 프레임워크 5.1.0 버전부터(스프링 부트 2.1.0) 강제로 덮어쓰는 것을 제한한다.
+    allow-bean-definition-overriding: false
