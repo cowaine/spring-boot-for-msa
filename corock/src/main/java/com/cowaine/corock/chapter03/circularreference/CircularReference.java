@@ -2,7 +2,7 @@ package com.cowaine.corock.chapter03.circularreference;
 
 import org.springframework.stereotype.Service;
 
-@Service
+// @Service
 public class CircularReference {
 
     private CircularService circularService;
