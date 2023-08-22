@@ -11,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -33,6 +34,9 @@ public class CorockApplication {
         // CorockApplication.p110(ctx);
         // CorockApplication.p121(ctx);
         // CorockApplication.p148(ctx);
+
+        PriceUnit priceUnit = ctx.getBean(PriceUnit.class);
+        log.info("Locale in PriceUnit: {}", priceUnit.getLocale().toString());
 
         ctx.close();
     }
@@ -58,6 +62,13 @@ public class CorockApplication {
         // PriceUnit testPriceUnit = ctx.getBean("testPriceUnit", PriceUnit.class);
     }
 
+    /**
+     * 스프링 빈을 정의한다.
+     *
+     * @return {@link PriceUnit}
+     * @throws org.springframework.beans.factory.NoUniqueBeanDefinitionException No qualifying bean of type 'com.cowaine.corock.chapter03.PriceUnit' available: expected single matching bean but found 2: priceUnit,wonPriceUnit
+     */
+    @Primary
     @Bean(name = "priceUnit")
     public PriceUnit dollarPriceUnit() {
         return new PriceUnit(Locale.US);
