@@ -1,1 +1,10 @@
+server:
+  port: 8888
+  tomcat:
+    threads:
+      max: 100
+      min-spare: 100
 
+spring:
+  main:
+    allow-bean-definition-overriding: true
