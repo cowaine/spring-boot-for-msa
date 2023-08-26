@@ -1,9 +1,15 @@
 server:
-  port: 8888
+  port: 18080
   tomcat:
     threads:
       max: 100
       min-spare: 100
+    connection-timeout: 30s
+    accesslog:
+      enabled: true
+      suffix: log
+      prefix: access_long
+      rename-on-rotate: true
 
 spring:
   main:

@@ -1,4 +1,4 @@
-package com.cowaine.dingcook.domain.ex01;
+package com.cowaine.dingcook.domain.chapter03.ex01;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;

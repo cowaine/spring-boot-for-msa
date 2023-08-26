@@ -1,4 +1,4 @@
-package com.cowaine.dingcook.domain.ex05;
+package com.cowaine.dingcook.domain.chapter03.ex05;
 
 import java.text.ParseException;
 import java.util.concurrent.ThreadPoolExecutor;

@@ -1,6 +1,6 @@
-package com.cowaine.dingcook.domain.ex09;
+package com.cowaine.dingcook.domain.chapter03.ex09;
 
-import com.cowaine.dingcook.domain.ex01.PriceUnit;
+import com.cowaine.dingcook.domain.chapter03.ex01.PriceUnit;
 import java.util.Locale;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
