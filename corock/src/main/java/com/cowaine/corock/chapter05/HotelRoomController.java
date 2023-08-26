@@ -7,8 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMapAdapter;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
@@ -24,8 +27,8 @@ public class HotelRoomController {
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
 
     @PostMapping(path = "/hotels/{hotelId}/rooms")
-    public ResponseEntity<HotelRoomIdResponse> createHotelRoom(@PathVariable Long hotelId,
-                                                               @RequestBody HotelRoomRequest hotelRoomRequest) {
+    public ResponseEntity<HotelRoomIdResponse> createHotelRoom(@PathVariable final Long hotelId,
+                                                               @RequestBody final HotelRoomRequest hotelRoomRequest) {
         log.info(hotelRoomRequest.toString());
 
         MultiValueMapAdapter<String, String> headers = new LinkedMultiValueMap<>();
@@ -60,6 +63,31 @@ public class HotelRoomController {
         }
 
         return response;
+    }
+
+    @PutMapping(path = "/hotels/{hotelId}/rooms/{roomNumber}")
+    public ResponseEntity<HotelRoomIdResponse> updateHotelRoomByRoomNumber(@PathVariable final Long hotelId,
+            @PathVariable final String roomNumber,
+            @Valid @RequestBody final HotelRoomUpdateRequest hotelRoomUpdateRequest,
+            BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            FieldError fieldError = bindingResult.getFieldError();
+            String errorMessage = new StringBuilder("validation error.")
+                    .append(" field: ").append(fieldError.getField())
+                    .append(", code: ").append(fieldError.getCode())
+                    .append(", message: ").append(fieldError.getDefaultMessage())
+                    .toString();
+
+            log.error(errorMessage);
+
+            return ResponseEntity.badRequest().build();
+        }
+
+        log.info(hotelRoomUpdateRequest.toString());
+        HotelRoomIdResponse body = HotelRoomIdResponse.from(1_002_003_004L);
+
+        return ResponseEntity.ok(body);
     }
 
     @DeleteMapping(path = "/hotels/{hotelId}/rooms/{roomNumber}")
