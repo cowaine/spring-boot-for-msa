@@ -21,4 +21,9 @@ public class ApiExceptionHandler {
         return new ResponseEntity<>(new ErrorResponse("system error"), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @ExceptionHandler(FileDownloadException.class)
+    public ResponseEntity handleFileDownloadException(FileDownloadException ex) {
+        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 }
