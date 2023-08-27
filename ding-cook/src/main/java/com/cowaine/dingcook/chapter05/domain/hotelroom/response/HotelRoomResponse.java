@@ -16,8 +16,8 @@ import lombok.Getter;
 @Getter
 public class HotelRoomResponse {
 
-    @JsonProperty("id")
-    @JsonSerialize(using = ToStringSerializer.class)
+    @JsonProperty("id") // @JsonProperty JSON 객체로 마셜링 하는 과정에서 hotelRoomId 속성 이름 대신 id를 사용할 경우
+    @JsonSerialize(using = ToStringSerializer.class) // @JsonSerialize Long 값을 String 타입으로 변경할 때 사용
     private final Long hotelRoomId;
     private final String roomNumber;
     private final HotelRoomType hotelRoomType;
