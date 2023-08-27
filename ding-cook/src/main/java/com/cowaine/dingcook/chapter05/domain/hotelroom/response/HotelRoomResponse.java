@@ -1,5 +1,7 @@
-package com.cowaine.dingcook.chapter05.domain.hotel.response;
+package com.cowaine.dingcook.chapter05.domain.hotelroom.response;
 
+import com.cowaine.dingcook.chapter05.domain.hotelroom.HotelRoomType;
+import com.cowaine.dingcook.chapter05.global.serializer.ToDollarStringSerializer;
 import com.cowaine.dingcook.chapter05.global.utils.IdGenerator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

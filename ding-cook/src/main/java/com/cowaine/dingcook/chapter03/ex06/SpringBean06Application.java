@@ -1,4 +1,4 @@
-package com.cowaine.dingcook.domain.chapter03.ex06;
+package com.cowaine.dingcook.chapter03.ex06;
 
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.SpringApplication;

@@ -1,7 +1,7 @@
-package com.cowaine.dingcook.domain.chapter04.service.impl;
+package com.cowaine.dingcook.chapter04.service.impl;
 
-import com.cowaine.dingcook.domain.chapter04.entity.Hotel;
-import com.cowaine.dingcook.domain.chapter04.service.HotelSearchService;
+import com.cowaine.dingcook.chapter04.entity.Hotel;
+import com.cowaine.dingcook.chapter04.service.HotelSearchService;
 import org.springframework.stereotype.Service;
 
 @Service

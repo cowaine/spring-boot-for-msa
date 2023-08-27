@@ -1,6 +1,6 @@
-package com.cowaine.dingcook.domain.chapter04.service;
+package com.cowaine.dingcook.chapter04.service;
 
-import com.cowaine.dingcook.domain.chapter04.entity.Hotel;
+import com.cowaine.dingcook.chapter04.entity.Hotel;
 
 public interface HotelSearchService {
 

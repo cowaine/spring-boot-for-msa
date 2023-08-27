@@ -1,7 +1,7 @@
-package com.cowaine.dingcook.domain.chapter04.api;
+package com.cowaine.dingcook.chapter04.api;
 
-import com.cowaine.dingcook.domain.chapter04.entity.Hotel;
-import com.cowaine.dingcook.domain.chapter04.service.HotelSearchService;
+import com.cowaine.dingcook.chapter04.entity.Hotel;
+import com.cowaine.dingcook.chapter04.service.HotelSearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

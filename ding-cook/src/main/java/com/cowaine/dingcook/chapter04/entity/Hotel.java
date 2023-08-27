@@ -1,4 +1,4 @@
-package com.cowaine.dingcook.domain.chapter04.entity;
+package com.cowaine.dingcook.chapter04.entity;
 
 import lombok.RequiredArgsConstructor;
 

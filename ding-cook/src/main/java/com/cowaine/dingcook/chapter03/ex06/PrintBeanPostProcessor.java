@@ -1,4 +1,4 @@
-package com.cowaine.dingcook.domain.chapter03.ex06;
+package com.cowaine.dingcook.chapter03.ex06;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;

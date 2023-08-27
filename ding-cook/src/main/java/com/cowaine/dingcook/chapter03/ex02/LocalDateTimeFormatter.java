@@ -1,4 +1,4 @@
-package com.cowaine.dingcook.domain.chapter03.ex02;
+package com.cowaine.dingcook.chapter03.ex02;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

@@ -1,4 +1,4 @@
-package com.cowaine.dingcook.domain.chapter03.ex01;
+package com.cowaine.dingcook.chapter03.ex01;
 
 import java.math.BigDecimal;
 import java.util.Locale;

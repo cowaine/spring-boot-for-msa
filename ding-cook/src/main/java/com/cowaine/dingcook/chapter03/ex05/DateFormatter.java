@@ -1,6 +1,6 @@
-package com.cowaine.dingcook.domain.chapter03.ex05;
+package com.cowaine.dingcook.chapter03.ex05;
 
-import com.cowaine.dingcook.domain.chapter03.ex02.Formatter;
+import com.cowaine.dingcook.chapter03.ex02.Formatter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
