@@ -41,6 +41,7 @@ public class HotelRoomResponse {
           this.reservations.add(new Reservation(reservationId, date));
      }
      
+     @Getter
      @JsonSerialize
      @RequiredArgsConstructor
      public static class Reservation {
