@@ -1,16 +1,25 @@
 package com.cowaine.dingcook.chapter05.domain.hotelroom.api;
 
 import com.cowaine.dingcook.chapter05.domain.hotelroom.HotelRoomType;
+import com.cowaine.dingcook.chapter05.domain.hotelroom.request.HotelRoomRequest;
 import com.cowaine.dingcook.chapter05.domain.hotelroom.response.DeleteResultResponse;
+import com.cowaine.dingcook.chapter05.domain.hotelroom.response.HotelRoomIdResponse;
 import com.cowaine.dingcook.chapter05.domain.hotelroom.response.HotelRoomResponse;
 import com.cowaine.dingcook.chapter05.global.utils.IdGenerator;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -62,5 +71,37 @@ public class HotelRoomController {
         System.out.println("Delete Request. hotelId=" + hotelId + ", roomNumber" + roomNumber);
 
         return new DeleteResultResponse(Boolean.TRUE, "success");
+    }
+
+    /**
+     * ### REST-API 요청
+     * POST /hotels/{hotelId}/rooms
+     * {
+         * "roomNumber" : "West-Wing-3928", "roomType" : "double", "originalPrice" : "150.00"
+     * }
+     *
+     * ### ### REST-API 응답
+     * - [HEADER] X-CREATED-AT : yyyy-MM-dd'T'HH:mm:ssXXX
+     *
+     * {
+     *     "id": "1201928193"
+     * }
+     */
+
+    private static final String HEADER_CREATED_AT = "X-CREATED-AT";
+    private final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
+    @PostMapping("/hotels/{hotelId}/rooms")
+    public ResponseEntity<HotelRoomIdResponse> createHotelRoom(
+        @PathVariable Long hotelId,
+        @RequestBody HotelRoomRequest hotelRoomRequest) {
+
+        System.out.println(hotelRoomRequest.toString());
+
+        LinkedMultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+        headers.add(HEADER_CREATED_AT, DATE_FORMATTER.format(ZonedDateTime.now()));
+
+        HotelRoomIdResponse body = HotelRoomIdResponse.from(1_002_003_004L);
+
+        return new ResponseEntity<>(body, headers, HttpStatus.OK);
     }
 }
