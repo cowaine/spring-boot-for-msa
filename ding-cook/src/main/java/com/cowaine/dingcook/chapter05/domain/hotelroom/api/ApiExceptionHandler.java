@@ -2,6 +2,7 @@ package com.cowaine.dingcook.chapter05.domain.hotelroom.api;
 
 import com.cowaine.dingcook.chapter05.domain.hotelroom.exception.BadRequestException;
 import com.cowaine.dingcook.chapter05.domain.hotelroom.response.ErrorResponse;
+import com.cowaine.dingcook.chapter05.domain.reservation.exeption.FileDownloadException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,5 +23,10 @@ public class ApiExceptionHandler {
     public ResponseEntity<ErrorResponse> handleException(Exception ex) {
         return new ResponseEntity<>(
             new ErrorResponse("system error"), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(FileDownloadException.class)
+    public ResponseEntity handleFileDownloadException(FileDownloadException e) {
+        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
