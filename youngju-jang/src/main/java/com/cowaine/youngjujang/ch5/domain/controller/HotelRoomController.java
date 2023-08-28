@@ -69,6 +69,6 @@ public class HotelRoomController {
           headers.add(HEADER_CREATED_AT, DATE_FORMATTER.format(ZonedDateTime.now()));
           HotelRoomIdResponse body = HotelRoomIdResponse.from(1_002_003_004L);
           
-          return new ResponseEntity<>(body, headers, HttpStatus.OK);
+          return new ResponseEntity<>(body, headers, HttpStatus.OK); // body, header, 상태코드
      }
 }
