@@ -6,8 +6,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
@@ -62,7 +65,7 @@ public class HotelRoomController {
      public ResponseEntity<HotelRoomIdResponse> createHotelRoom(
           @PathVariable Long hotelId,
           @RequestBody HotelRoomRequest hotelRoomRequest
-     ){
+     ) {
           System.out.println(hotelRoomRequest.toString());
           
           MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
@@ -71,4 +74,31 @@ public class HotelRoomController {
           
           return new ResponseEntity<>(body, headers, HttpStatus.OK); // body, header, 상태코드
      }
+     
+     @PutMapping (path = "/hotels/{hotelId}/rooms/{roomNumber}")
+     public ResponseEntity<HotelRoomIdResponse> updateHotelRoomByRoomNumber(
+          @PathVariable Long hotelId,
+          @PathVariable String roomNumber,
+          @Valid @RequestBody HotelRoomUpdateRequest hotelRoomUpdateRequest, // 위치가 중요함. 검증대상객체 다음 BindingResult
+          BindingResult bindingResult){
+          
+          if(bindingResult.hasErrors()){
+               FieldError fieldError = bindingResult.getFieldError();
+               assert fieldError != null;
+               String errorMessage = new StringBuilder("validation error")
+                    .append(" field : ").append(fieldError.getField()) // 실패한 속성 검증정보
+                    .append(", code : ").append(fieldError.getCode()) // 어떤 검증을 실패했는
+                    .append(", message : ").append(fieldError.getDefaultMessage())
+                    .toString();
+               // validation error field : roomType, code : NotNull, message : roomType can't be null
+               
+               System.out.println(errorMessage);
+               return ResponseEntity.badRequest().build();
+          }
+          
+          System.out.println(hotelRoomUpdateRequest.toString());
+          HotelRoomIdResponse body = HotelRoomIdResponse.from(1_002_003_004L);
+          return ResponseEntity.ok(body);
+     }
+     
 }
