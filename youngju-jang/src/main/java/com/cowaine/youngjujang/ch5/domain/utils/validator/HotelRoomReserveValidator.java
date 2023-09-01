@@ -14,7 +14,7 @@ public class HotelRoomReserveValidator implements Validator {
      
      @Override
      public void validate(Object target, Errors errors) {
-          HotelRoomReserveRequest request = HotelRoomReserveRequest.class.cast(target);
+          HotelRoomReserveRequest request = (HotelRoomReserveRequest) target;
           
           if (Objects.isNull(request.getCheckInDate())) {
                errors.rejectValue("checkInDate", "NotNull", "checkInDate is null");
