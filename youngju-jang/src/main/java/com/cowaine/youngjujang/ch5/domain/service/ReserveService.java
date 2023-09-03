@@ -20,7 +20,6 @@ public class ReserveService {
                     log.error("Invalid roomNumber. hotelId:{}, roomNumber:{}", hotelId, roomNumber);
                     return new BadRequestException("Not existing roomNumber");
                });
-          
           return hotelRoom.getId();
      }
 }

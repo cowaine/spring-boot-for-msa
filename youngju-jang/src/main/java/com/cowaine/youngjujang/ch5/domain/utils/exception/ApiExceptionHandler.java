@@ -13,8 +13,13 @@ public class ApiExceptionHandler {
           System.out.println("Error Message : " + ex.getErrorMessage());
           return new ResponseEntity<>(
                new ErrorResponse(ex.getErrorMessage()),
-                    HttpStatus.BAD_REQUEST
+               HttpStatus.BAD_REQUEST
           );
+     }
+     
+     @ExceptionHandler(FileDownloadException.class)
+     public ResponseEntity handleFileDownloadException(FileDownloadException e){
+          return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
      }
      
      @ExceptionHandler(Exception.class)
