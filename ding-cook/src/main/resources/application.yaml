@@ -1,10 +1,25 @@
 server:
-  port: 8888
+  port: 18080
   tomcat:
     threads:
       max: 100
       min-spare: 100
+    connection-timeout: 30s
+    accesslog:
+      enabled: true
+      suffix: log
+      prefix: access_long
+      rename-on-rotate: true
 
 spring:
   main:
     allow-bean-definition-overriding: true
+  data:
+    web:
+      pageable:
+        page-parameter: pageNumber # 파라미터 이름인 page 대신 pageNumber 변경
+        size-parameter: pageSize # 파라미터 이름인 size 대신 pageSize 변경
+        default-page-size: 20 # 기본 페이지 크기에 대응되는 파라미터가 없다면 20개가 기본
+        max-page-size: 2000 # 한번에 조회할 수 있는 페이지 크기 최댓값을 설정할 수 있다.
+      sort:
+        sort-parameter: sortOrder # 파라미터 이름인 sort 대신 sortOrder로 변경
