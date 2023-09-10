@@ -2,6 +2,7 @@ package com.cowaine.crupy.part5.controller;
 
 import com.cowaine.crupy.part5.custom.IdGenerator;
 import com.cowaine.crupy.part5.dto.*;
+import com.cowaine.crupy.part6.globals.client.ClientInfo;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,7 @@ public class HotelRoomController {
 
     @GetMapping("/hotels/{hotelId}/rooms/{roomNumber}")
     public HotelRoomResponse getHotelRoomByPeriod(
+            ClientInfo clientInfo,
             @PathVariable Long hotelId,
             @PathVariable String roomNumber,
             @RequestParam(value = "fromDate", required = false)
