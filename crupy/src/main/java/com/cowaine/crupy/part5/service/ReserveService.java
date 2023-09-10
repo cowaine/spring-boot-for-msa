@@ -1,21 +1,12 @@
 package com.cowaine.crupy.part5.service;
 
+import com.cowaine.crupy.part5.exception.BadRequestException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
 @Service
-public class ReserveService {
-
-
-    public Long reserveHotelRoom(Long hotelId, String roomNumber, LocalDate checkInDate, LocalDate checkOutDate) {
-
-        hotelRoomRepository.findByHotelIdAndRoomNumber(hotelId, roomNumber)
-                .orElseThrow(() -> {
-                    log.error("Invalid roomNumber. HotelId:{}, roomNumber:{}", hotelId, roomNumber);
-
-                    return new BadRequestException("Not existing roomNumber");
-                });
-    }
+public interface ReserveService {
+    Long reserveHotelRoom(Long hotelId, String roomNumber, LocalDate checkInDate, LocalDate checkOutDate);
 }
 

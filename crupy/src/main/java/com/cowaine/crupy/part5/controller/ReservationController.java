@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 public class ReservationController {
 
-    @GetMapping("/hotels/{hotelId}/rooms/{roomNumber/reservations")
+    @GetMapping("/hotels/{hotelId}/rooms/{roomNumber}/reservations")
     public List<Long> getReservationsByPaging(
             @PathVariable Long hotelId,
             @PathVariable String roomNumber,
