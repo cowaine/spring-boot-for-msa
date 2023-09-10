@@ -1,12 +1,12 @@
 package com.cowaine.crupy.part5.dto;
 
+import com.cowaine.crupy.part5.custom.IdGenerator;
 import com.cowaine.crupy.part5.custom.ToDallarStringSerializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Getter;
-import org.springframework.util.IdGenerator;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

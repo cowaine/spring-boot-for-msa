@@ -3,6 +3,7 @@ package com.cowaine.crupy.part5.controller;
 import com.cowaine.crupy.part5.dto.HotelRoomIdResponse;
 import com.cowaine.crupy.part5.dto.HotelRoomReserveRequest;
 import com.cowaine.crupy.part5.exception.BadRequestException;
+import com.cowaine.crupy.part5.service.ReserveService;
 import com.cowaine.crupy.part5.validator.HotelRoomReserveValidator;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -16,7 +17,7 @@ public class HotelRoomReserveController {
 
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ErrorResponse> handleException(BadRequestException ex){
-
+        return null;
     }
     @InitBinder
     void initBinder(WebDataBinder binder){
@@ -30,6 +31,7 @@ public class HotelRoomReserveController {
             @Valid @RequestBody HotelRoomReserveRequest reserveRequest,
             BindingResult bindingResult){
 
+        ReserveService reserveService = null;
         Long reservationId = reserveService.reserveHotelRoom(
                 hotelId, roomNumber,
                 reserveRequest.getCheckInDate(),
