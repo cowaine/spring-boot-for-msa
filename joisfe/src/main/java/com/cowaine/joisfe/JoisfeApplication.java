@@ -66,7 +66,7 @@ public class JoisfeApplication {
             });
         }
 
-        applicationContext.close();
+//        applicationContext.close();
     }
 
     @Bean(name = "priceUnit")
