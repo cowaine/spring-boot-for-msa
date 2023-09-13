@@ -1,7 +1,8 @@
-package com.cowaine.crupy.part5.dto;
+package com.cowaine.crupy.part6.domain.hotelroom.dto;
 
 import com.cowaine.crupy.part5.custom.IdGenerator;
-import com.cowaine.crupy.part5.custom.ToDallarStringSerializer;
+import com.cowaine.crupy.part5.dto.HotelRoomType;
+import com.cowaine.crupy.part6.globals.serializer.ToDollarStringSerializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -24,7 +25,7 @@ public class HotelRoomResponse {
 
     private final HotelRoomType hotelRoomType;
 
-    @JsonSerialize(using = ToDallarStringSerializer.class)
+    @JsonSerialize(using = ToDollarStringSerializer.class)
     private final BigDecimal originalPrice;
 
     private final List<Reservation> reservations;
@@ -37,16 +38,17 @@ public class HotelRoomResponse {
         reservations = new ArrayList<>();
     }
 
-    public static HotelRoomResponse of(Long hotelRoomId, String roomNumber, HotelRoomType hotelRoomType, BigDecimal originalPrice){
+    public static HotelRoomResponse of(Long hotelRoomId, String roomNumber, HotelRoomType hotelRoomType, BigDecimal originalPrice) {
         return new HotelRoomResponse(hotelRoomId, roomNumber, hotelRoomType, originalPrice);
     }
 
-    public void reservedAt(LocalDate reservedAt){
+    public void reservedAt(LocalDate reservedAt) {
         reservations.add(new Reservation(IdGenerator.create(), reservedAt));
     }
 
     @Getter
     private static class Reservation {
+
         @JsonProperty("id")
         @JsonSerialize(using = ToStringSerializer.class)
         private final Long reservationId;
@@ -54,7 +56,7 @@ public class HotelRoomResponse {
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
         private final LocalDate reservedDate;
 
-        public Reservation(Long reservationId, LocalDate reservedDate){
+        public Reservation(Long reservationId, LocalDate reservedDate) {
             this.reservationId = reservationId;
             this.reservedDate = reservedDate;
         }
