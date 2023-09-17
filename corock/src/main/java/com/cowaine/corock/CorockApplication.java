@@ -42,19 +42,6 @@ public class CorockApplication {
         // CorockApplication.p162(ctx);
     }
 
-    private static void p162(ConfigurableApplicationContext ctx) {
-        log.info("------- Done to initialize spring beans");
-        PriceUnit priceUnit = ctx.getBean("lazyPriceUnit", PriceUnit.class);
-        log.info("Locale in PriceUnit: {}", priceUnit.getLocale().toString());
-
-        ctx.close();
-    }
-
-    private static void p160(ConfigurableApplicationContext ctx) {
-        Object obj = ctx.getBean("systemId");
-        log.warn("Bean Info. type: {}, value: {}", obj.getClass(), obj);
-    }
-
     private static void p99(ConfigurableApplicationContext ctx) {
         Environment env = ctx.getBean(Environment.class);
         String port = env.getProperty("server.port");
@@ -131,6 +118,7 @@ public class CorockApplication {
         return new DateFormatter("yyyy-MM-dd'T'HH:mm:ss");
     }
 
+
     // @Bean(initMethod = "init", destroyMethod = "clear")
     public LifeCycleComponent lifeCycleComponent() {
         return new LifeCycleComponent();
@@ -144,6 +132,19 @@ public class CorockApplication {
     private static void p158(ConfigurableApplicationContext ctx) {
         PriceUnit priceUnit = ctx.getBean(PriceUnit.class);
         log.info("Locale in PriceUnit: {}", priceUnit.getLocale().toString());
+    }
+
+    private static void p160(ConfigurableApplicationContext ctx) {
+        Object obj = ctx.getBean("systemId");
+        log.warn("Bean Info. type: {}, value: {}", obj.getClass(), obj);
+    }
+
+    private static void p162(ConfigurableApplicationContext ctx) {
+        log.info("------- Done to initialize spring beans");
+        PriceUnit priceUnit = ctx.getBean("lazyPriceUnit", PriceUnit.class);
+        log.info("Locale in PriceUnit: {}", priceUnit.getLocale().toString());
+
+        ctx.close();
     }
 
 }
