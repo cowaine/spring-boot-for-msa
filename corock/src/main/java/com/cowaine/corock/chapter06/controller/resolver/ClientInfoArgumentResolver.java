@@ -9,7 +9,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 public class ClientInfoArgumentResolver implements HandlerMethodArgumentResolver {
 
-    public static final String HEADER_CHANNEL = "X-SPRINGTOUR-CHANNEL";
+    public static final String HEADER_CHANNEL = "X-VROONG-CHANNEL";
     public static final String HEADER_CLIENT_IP = "X-FORWARDED-FOR";
 
     @Override

@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
@@ -26,10 +27,11 @@ import java.util.stream.IntStream;
 
 @Slf4j
 @SpringBootApplication
+@ConfigurationPropertiesScan(basePackages = "com.cowaine.corock.chapter06")
 public class CorockApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext ctx = SpringApplication.run(CorockApplication.class, args);
+        SpringApplication.run(CorockApplication.class, args);
 
         // CorockApplication.p99(ctx);
         // CorockApplication.p110(ctx);
