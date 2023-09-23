@@ -1,1 +1,6 @@
-
+server:
+  port: 20628
+  tomcat:
+    threads:
+      min-spare: 100
+      max: 100
