@@ -1,5 +1,5 @@
 server:
-  port: 20628
+  port: 0x628
   tomcat:
     threads:
       min-spare: 100
