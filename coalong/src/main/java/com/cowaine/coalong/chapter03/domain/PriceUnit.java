@@ -1,4 +1,4 @@
-package com.cowaine.coalong.domain;
+package com.cowaine.coalong.chapter03.domain;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,6 @@
-package com.cowaine.coalong.service;
+package com.cowaine.coalong.chapter03.service;
 
-import com.cowaine.coalong.User;
+import com.cowaine.coalong.chapter03.User;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

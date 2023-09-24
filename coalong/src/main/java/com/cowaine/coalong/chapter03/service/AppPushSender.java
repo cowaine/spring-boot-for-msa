@@ -1,15 +1,15 @@
-package com.cowaine.coalong.service;
+package com.cowaine.coalong.chapter03.service;
 
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Builder
-public class SmsSender implements Sender {
+public class AppPushSender implements Sender {
 
     private final String endpoint;
-    private final int port;
-    private final long timeout;
+    private final Integer port;
+    private final Long timeout;
 
     @Override
     public boolean sendText(String phoneNumber, String message) {

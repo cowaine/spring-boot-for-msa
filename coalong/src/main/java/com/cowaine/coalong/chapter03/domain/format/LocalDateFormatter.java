@@ -1,4 +1,4 @@
-package com.cowaine.coalong.domain.format;
+package com.cowaine.coalong.chapter03.domain.format;
 
 import org.springframework.stereotype.Component;
 

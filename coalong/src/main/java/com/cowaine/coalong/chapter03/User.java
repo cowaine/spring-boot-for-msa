@@ -1,4 +1,4 @@
-package com.cowaine.coalong;
+package com.cowaine.coalong.chapter03;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -8,5 +8,5 @@ import lombok.RequiredArgsConstructor;
 public class User {
 
     private final String phoneNumber;
-    
+
 }

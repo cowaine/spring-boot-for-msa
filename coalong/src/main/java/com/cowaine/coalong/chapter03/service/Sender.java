@@ -1,4 +1,4 @@
-package com.cowaine.coalong.service;
+package com.cowaine.coalong.chapter03.service;
 
 public interface Sender {
 

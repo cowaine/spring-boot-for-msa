@@ -1,7 +1,7 @@
 package com.cowaine.coalong;
 
-import com.cowaine.coalong.domain.PriceUnit;
-import com.cowaine.coalong.domain.format.Formatter;
+import com.cowaine.coalong.chapter03.domain.PriceUnit;
+import com.cowaine.coalong.chapter03.domain.format.Formatter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
