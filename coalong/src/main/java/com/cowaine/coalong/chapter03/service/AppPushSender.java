@@ -1,9 +1,8 @@
 package com.cowaine.coalong.chapter03.service;
 
-import lombok.Builder;
 import org.springframework.stereotype.Component;
 
-@Builder
+//@Builder
 @Component
 public class AppPushSender implements Sender {
 

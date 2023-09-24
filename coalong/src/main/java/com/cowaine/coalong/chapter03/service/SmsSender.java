@@ -1,15 +1,14 @@
 package com.cowaine.coalong.chapter03.service;
 
-import lombok.Builder;
 import org.springframework.stereotype.Component;
 
-@Builder
+//@Builder
 @Component
 public class SmsSender implements Sender {
 
-    private final String endpoint;
-    private final int port;
-    private final long timeout;
+    private String endpoint;
+    private int port;
+    private long timeout;
 
     public SmsSender() {
         this.endpoint = "/";
