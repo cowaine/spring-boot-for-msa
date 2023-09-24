@@ -22,15 +22,15 @@ public class OrderPrinter implements Printer<OrderProduct> {
     private Formatter<LocalDateTime> formatter;
 
     // 3. Constructor Injection
-    @Autowired
+    // @Autowired /* 생성자 주입 방법에서는  @Autowired 생략 가능 관례 (public 생성자 1개일 경우에만)
     public OrderPrinter(@Qualifier("localDateFormatter") Formatter<LocalDateTime> formatter) {
         this.formatter = formatter;
     }
 
     // 2. Setter Method Injection
     @Autowired
-    public void setFormatter(@Qualifier("localDateFormatter") Formatter<LocalDateTime> formatter02) {
-        this.formatter3 = formatter02;
+    public void setFormatter(@Qualifier("localDateFormatter") Formatter<LocalDateTime> formatter3) {
+        this.formatter3 = formatter3;
     }
 
     @Override
