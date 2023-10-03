@@ -17,7 +17,7 @@ import java.util.Objects;
 @RestController
 public class HotelRoomController {
      
-     @GetMapping (path = "/hotels/{hotelId}/rooms/{roomNumber}")
+     @GetMapping (path = "/v6/hotels/{hotelId}/rooms/{roomNumber}")
      public HotelRoomResponse getHotelRoomByPeriod(
           @PathVariable Long hotelId,
           @PathVariable HotelRoomNumber roomNumber,
