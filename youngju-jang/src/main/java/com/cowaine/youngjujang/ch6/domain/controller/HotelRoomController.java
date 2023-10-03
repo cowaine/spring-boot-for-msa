@@ -3,6 +3,7 @@ package com.cowaine.youngjujang.ch6.domain.controller;
 import com.cowaine.youngjujang.ch6.domain.dto.HotelRoomResponse;
 import com.cowaine.youngjujang.ch6.domain.dto.HotelRoomType;
 import com.cowaine.youngjujang.ch6.domain.HotelRoomNumber;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,11 +15,13 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
+@Slf4j
 @RestController
 public class HotelRoomController {
      
      @GetMapping (path = "/v6/hotels/{hotelId}/rooms/{roomNumber}")
      public HotelRoomResponse getHotelRoomByPeriod(
+          ClientInfo clientInfo,
           @PathVariable Long hotelId,
           @PathVariable HotelRoomNumber roomNumber,
           @RequestParam (value = "fromDate", required = false)
@@ -39,6 +42,7 @@ public class HotelRoomController {
                fromDate.datesUntil(toDate.plusDays(1))
                     .forEach(response::reservedAt);
           }
+          log.info("channel : {} , address : {}", clientInfo.getChannel(), clientInfo.getClientAddress());
           return response;
      }
 }
