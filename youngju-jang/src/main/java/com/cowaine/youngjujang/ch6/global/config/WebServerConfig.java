@@ -2,7 +2,11 @@ package com.cowaine.youngjujang.ch6.global.config;
 
 import com.cowaine.youngjujang.ch6.domain.controller.converter.HotelRoomNumberConverter;
 import com.cowaine.youngjujang.ch6.domain.controller.resolver.ClientInfoArgumentResolver;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -30,5 +34,13 @@ public class WebServerConfig implements WebMvcConfigurer {
 //          WebMvcConfigurer.super.configureMessageConverters(converters);
           converters.add(new MappingJackson2HttpMessageConverter()); // convert json message
           converters.add(new MappingJackson2XmlHttpMessageConverter());// convert xml message
+     }
+     
+     @Bean
+     @Primary
+     public ObjectMapper objectMapper(){
+          ObjectMapper objectMapper = new ObjectMapper();
+          objectMapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY); //<< 종류 많음 ㅇㅇ 317p 참고
+          return objectMapper;
      }
 }
