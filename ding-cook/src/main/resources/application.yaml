@@ -23,3 +23,13 @@ spring:
         max-page-size: 2000 # 한번에 조회할 수 있는 페이지 크기 최댓값을 설정할 수 있다.
       sort:
         sort-parameter: sortOrder # 파라미터 이름인 sort 대신 sortOrder로 변경
+
+## Custom configuration
+springtour:
+  domain:
+    name: https://springtour.io
+  kafka:
+    bootstrap-servers: 10.1.1.100, 10.1.1.101, 10.1.1.102
+    checkout: springtour-hotel-event-checkout
+    reservation: springtour-hotel-event-reservation
+    ack-level: 1
