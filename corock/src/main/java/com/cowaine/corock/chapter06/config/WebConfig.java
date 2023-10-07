@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -91,12 +92,16 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
+        // Unable to locate the default servlet for serving static content. Please set the 'defaultServletName' property explicitly.
+        // configurer.enable();
     }
 
     @Bean(name = "localeResolver")
     public LocaleResolver localeResolver() {
-        return new AcceptHeaderLocaleResolver();
+        AcceptHeaderLocaleResolver acceptHeaderLocaleResolver = new AcceptHeaderLocaleResolver();
+        acceptHeaderLocaleResolver.setDefaultLocale(Locale.KOREAN);
+
+        return acceptHeaderLocaleResolver;
     }
 
     @Override
@@ -114,9 +119,17 @@ public class WebConfig implements WebMvcConfigurer {
         return objectMapper;
     }
 
+    /**
+     * 클라이언트가 웹 서버에 리소스를 요청할 때 Accept-Language 헤더가 아닌 파라미터로 Locale 값을 변경하고 싶다면
+     * {@link LocaleChangeInterceptor} 를 사용한다.
+     *
+     * @param registry Helps with configuring a list of mapped interceptors
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+
+        // e.g. GET /hotels?locale=ko 로 요청 시 파라미터 값으로 Locale 객체를 생성하고 애플리케이션 내부에서 사용 가능
         localeChangeInterceptor.setParamName("locale");
         registry.addInterceptor(localeChangeInterceptor)
                 .excludePathPatterns("/favicon.ico")

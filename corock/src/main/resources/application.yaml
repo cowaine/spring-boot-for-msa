@@ -36,6 +36,15 @@ spring:
   profiles:
     active: dev, email
 
+  # p. 354
+  messages:
+    basename: messages/message, errors/error-message
+    always-use-message-format: false
+    cache-duration:
+    encoding: UTF-8
+    fallback-to-system-locale: true
+    use-code-as-default-message: false
+
 # Custom configurations
 vroong:
   domain:

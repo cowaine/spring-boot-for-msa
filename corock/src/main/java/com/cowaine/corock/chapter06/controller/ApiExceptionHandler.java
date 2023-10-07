@@ -1,5 +1,8 @@
-package com.cowaine.corock.chapter05;
+package com.cowaine.corock.chapter06.controller;
 
+import com.cowaine.corock.chapter05.BadRequestException;
+import com.cowaine.corock.chapter05.ErrorResponse;
+import com.cowaine.corock.chapter05.FileDownloadException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
