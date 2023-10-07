@@ -18,7 +18,6 @@ spring:
     # 스프링 빈 이름을 중복하여 선언하는 경우 BeanDefinitionOverrideException 예외가 발생하는데,
     # 스프링 프레임워크 5.1.0 버전부터(스프링 부트 2.1.0) 강제로 덮어쓰는 것을 제한한다.
     allow-bean-definition-overriding: true
-
   data:
     web:
       pageable:
@@ -34,7 +33,9 @@ spring:
     open-in-view: false
 
   profiles:
-    active: dev, email
+#    active: dev, email
+    active: local
+    default: local
 
   # p. 354
   messages:
@@ -44,6 +45,18 @@ spring:
     encoding: UTF-8
     fallback-to-system-locale: true
     use-code-as-default-message: false
+
+#logging:
+#  file:
+#    path: /home/user/apps/logs
+#    name: system.log
+#    max-history: 7
+#    max-size: 10MB
+#    total-size-cap: 0
+#  pattern:
+#    console:
+#    file:
+#    level:
 
 # Custom configurations
 vroong:
