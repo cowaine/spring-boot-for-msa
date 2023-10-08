@@ -59,7 +59,7 @@ public class HotelRoomController {
         HotelRoomResponse response = HotelRoomResponse.of(hotelRoomId, roomNumber, HotelRoomType.DOUBLE, originalPrice);
 
         if (Objects.nonNull(fromDate) && Objects.nonNull(toDate)) {
-            fromDate.datesUntil(toDate.plusDays(1)).forEach(date -> response.reservedAt(date));
+            fromDate.datesUntil(toDate.plusDays(1)).forEach(response::reservedAt);
         }
 
         return response;

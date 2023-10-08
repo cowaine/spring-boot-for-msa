@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
@@ -26,10 +27,11 @@ import java.util.stream.IntStream;
 
 @Slf4j
 @SpringBootApplication
+@ConfigurationPropertiesScan(basePackages = "com.cowaine.corock.chapter06")
 public class CorockApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext ctx = SpringApplication.run(CorockApplication.class, args);
+        SpringApplication.run(CorockApplication.class, args);
 
         // CorockApplication.p99(ctx);
         // CorockApplication.p110(ctx);
@@ -38,19 +40,6 @@ public class CorockApplication {
         // CorockApplication.p158(ctx);
         // CorockApplication.p160(ctx);
         // CorockApplication.p162(ctx);
-    }
-
-    private static void p162(ConfigurableApplicationContext ctx) {
-        log.info("------- Done to initialize spring beans");
-        PriceUnit priceUnit = ctx.getBean("lazyPriceUnit", PriceUnit.class);
-        log.info("Locale in PriceUnit: {}", priceUnit.getLocale().toString());
-
-        ctx.close();
-    }
-
-    private static void p160(ConfigurableApplicationContext ctx) {
-        Object obj = ctx.getBean("systemId");
-        log.warn("Bean Info. type: {}, value: {}", obj.getClass(), obj);
     }
 
     private static void p99(ConfigurableApplicationContext ctx) {
@@ -129,6 +118,7 @@ public class CorockApplication {
         return new DateFormatter("yyyy-MM-dd'T'HH:mm:ss");
     }
 
+
     // @Bean(initMethod = "init", destroyMethod = "clear")
     public LifeCycleComponent lifeCycleComponent() {
         return new LifeCycleComponent();
@@ -142,6 +132,19 @@ public class CorockApplication {
     private static void p158(ConfigurableApplicationContext ctx) {
         PriceUnit priceUnit = ctx.getBean(PriceUnit.class);
         log.info("Locale in PriceUnit: {}", priceUnit.getLocale().toString());
+    }
+
+    private static void p160(ConfigurableApplicationContext ctx) {
+        Object obj = ctx.getBean("systemId");
+        log.warn("Bean Info. type: {}, value: {}", obj.getClass(), obj);
+    }
+
+    private static void p162(ConfigurableApplicationContext ctx) {
+        log.info("------- Done to initialize spring beans");
+        PriceUnit priceUnit = ctx.getBean("lazyPriceUnit", PriceUnit.class);
+        log.info("Locale in PriceUnit: {}", priceUnit.getLocale().toString());
+
+        ctx.close();
     }
 
 }
