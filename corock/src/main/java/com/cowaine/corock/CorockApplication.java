@@ -5,6 +5,8 @@ import com.cowaine.corock.chapter03.di.DateFormatter;
 import com.cowaine.corock.chapter03.di.Formatter;
 import com.cowaine.corock.chapter03.lifecycle.LifeCycleComponent;
 import com.cowaine.corock.chapter03.lifecycle.PrintableBeanPostProcessor;
+import com.cowaine.corock.chapter07.dto.HotelRequest;
+import com.cowaine.corock.chapter07.service.DisplayService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.SpringApplication;
@@ -27,11 +29,12 @@ import java.util.stream.IntStream;
 
 @Slf4j
 @SpringBootApplication
-@ConfigurationPropertiesScan(basePackages = "com.cowaine.corock.chapter06")
+@ConfigurationPropertiesScan(basePackages = { "com.cowaine.corock.chapter06" })
 public class CorockApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CorockApplication.class, args);
+        ConfigurableApplicationContext ctx = SpringApplication.run(CorockApplication.class, args);
+        CorockApplication.testAop(ctx);
 
         // CorockApplication.p99(ctx);
         // CorockApplication.p110(ctx);
@@ -120,15 +123,15 @@ public class CorockApplication {
 
 
     // @Bean(initMethod = "init", destroyMethod = "clear")
+
     public LifeCycleComponent lifeCycleComponent() {
         return new LifeCycleComponent();
     }
-
     // @Bean
+
     public BeanPostProcessor beanPostProcessor() {
         return new PrintableBeanPostProcessor();
     }
-
     private static void p158(ConfigurableApplicationContext ctx) {
         PriceUnit priceUnit = ctx.getBean(PriceUnit.class);
         log.info("Locale in PriceUnit: {}", priceUnit.getLocale().toString());
@@ -145,6 +148,16 @@ public class CorockApplication {
         log.info("Locale in PriceUnit: {}", priceUnit.getLocale().toString());
 
         ctx.close();
+    }
+
+    /**
+     * @see <a href="https://github.com/gilbutITbook/080264/blob/main/spring-boot-example/chapter07/src/main/java/com/springtour/example/chapter07/Chapter07Application.java">Chapter07Application.java</a>
+     * @param ctx
+     */
+    private static void testAop(ConfigurableApplicationContext ctx) {
+        DisplayService displayService = ctx.getBean(DisplayService.class);
+        displayService.getHotelsByName(new HotelRequest("Ragged Point Inn"))
+                .forEach(hotelResponse -> log.info("response: {}", hotelResponse));
     }
 
 }
