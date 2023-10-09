@@ -30,7 +30,7 @@ import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.util.UrlPathHelper;
 
-@Configuration
+// @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
     /**
