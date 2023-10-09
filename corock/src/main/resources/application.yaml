@@ -61,7 +61,7 @@ spring:
 # Custom configurations
 vroong:
   domain:
-    name: https://springtour.io
+    name: https://vroong.io
 
   kafka:
     bootstrap-servers: 10.1.1.100, 10.1.1.101, 10.1.1.102
