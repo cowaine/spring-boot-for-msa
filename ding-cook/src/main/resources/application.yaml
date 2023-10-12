@@ -24,12 +24,35 @@ spring:
       sort:
         sort-parameter: sortOrder # 파라미터 이름인 sort 대신 sortOrder로 변경
 
-## Custom configuration
 springtour:
   domain:
-    name: https://springtour.io
+    name: https://springtour.io #Key=springtour.domain.name
   kafka:
-    bootstrap-servers: 10.1.1.100, 10.1.1.101, 10.1.1.102
-    checkout: springtour-hotel-event-checkout
-    reservation: springtour-hotel-event-reservation
+    bootstrap-servers: #List 형태 선언
+      - 10.1.1.100
+      - 10.1.1.101
+      - 10.1.1.102
+    topic:
+      checkout: springtour-hotel-event-checkout
+      reservation: springtour-hotel-event-reservation
     ack-level: 1
+    grades:
+      - subject: Math
+        score: 95
+      - subject: Science
+        score: 88
+      - subject: History
+        score: 92
+
+---
+
+grades:
+  -
+    subject: Math
+    score: 95
+  -
+    subject: Science
+    score: 88
+  -
+    subject: History
+    score: 92
