@@ -1,6 +1,6 @@
 package com.cowaine.youngjujang.ch7.domain.controller;
 
-import com.cowaine.youngjujang.ch7.domain.service.ReserveService;
+import com.cowaine.youngjujang.ch7.domain.service.HotelDisplayService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class HotelController {
-     private final ReserveService reserveService;
+     private final HotelDisplayService reserveService;
      @ResponseBody
      @RequestMapping (method = RequestMethod.POST, path = "/hotels/fetch-by-name")
      public ResponseEntity<List<HotelResponse>> getHotelsByName(@RequestBody HotelRequest hotelRequest) {
