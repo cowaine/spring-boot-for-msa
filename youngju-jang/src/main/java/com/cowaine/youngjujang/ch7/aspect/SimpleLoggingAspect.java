@@ -1,10 +1,8 @@
 package com.cowaine.youngjujang.ch7.aspect;
 
-import com.cowaine.youngjujang.ch7.domain.controller.HotelController;
 import com.cowaine.youngjujang.ch7.domain.controller.HotelRequest;
 import com.cowaine.youngjujang.ch7.domain.controller.HotelResponse;
 import lombok.extern.slf4j.Slf4j;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -40,6 +38,7 @@ public class SimpleLoggingAspect {
      @Pointcut("execution(* com.cowaine.youngjujang.ch7.domain.service.*.getHotelsByname(..))")
      public void pointGetHotelsByName(){}
      
+     // 1)
      @Before("pointGetHotelsByName()") // pointCut 시그니처를 사용한 @Before
      public void advice(JoinPoint joinPoint){
      }
@@ -57,12 +56,12 @@ public class SimpleLoggingAspect {
                .map(Object::toString)
                .orElseThrow();
           
-          log.info("argument info : {}", argumentValue);
+          log.info("1) argument info : {}", argumentValue);
      }
      
      @AfterReturning(pointcut = "execution(* getHotelsByName(..))", returning = "retVals") // 대사객체의 리턴객체를 주입
      public void printReturnObject(JoinPoint joinPoint, List<HotelResponse> retVals) throws Throwable{
-          retVals.forEach(response -> log.info("return value : {}", response));
+          retVals.forEach(response -> log.info("5) return value : {}", response));
      }
      
      @AfterThrowing(pointcut = "execution(* getHotelsByName(..))", throwing = "th")
