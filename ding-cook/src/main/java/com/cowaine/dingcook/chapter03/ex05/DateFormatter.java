@@ -7,7 +7,7 @@ import java.util.Date;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-@Component
+//@Component
 public class DateFormatter implements Formatter<Date> {
 
     private final SimpleDateFormat sdf;
