@@ -1,4 +1,4 @@
-package com.cowaine.coalong.chapter07;
+package com.cowaine.coalong.chapter07.controller;
 
 import com.cowaine.coalong.chapter07.dto.HotelRequest;
 import com.cowaine.coalong.chapter07.dto.HotelResponse;
