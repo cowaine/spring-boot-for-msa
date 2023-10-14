@@ -30,7 +30,7 @@ public class CoalongApplication {
 
         log.info("Date : " + date);
 
-        ctx.close();
+//        ctx.close();
 
     }
 
