@@ -37,11 +37,11 @@ public class HotelRoomDisplayServiceTest02 {
      @Test
      public void testAnswerMethod(){
           given(this.hotelRoomRepository.findById(any()))
-               .willAnswer(new Answer<HotelRoomEntity>() { // 추상메소드 구현필요
+               .willAnswer(new Answer<HotelRoomEntity>() { // 추상메소드 구현필요, HotelRoomEntity: answer메소드의 리턴타입
                     @Override
                     public HotelRoomEntity answer(InvocationOnMock invocation) throws Throwable {
                          // InvocationOnMock : mock객체(HotelRoomRepository)가 응답하는 메서드(findById)의 정보를 포함함
-                         Long id = invocation.getArgument(0);
+                         Long id = invocation.getArgument(0); // findById 의 첫번째 인자 리턴
                          if(id != null && id > 10){
                               return new HotelRoomEntity(id, "CODE", 10, 2, 2);
                          } else{
