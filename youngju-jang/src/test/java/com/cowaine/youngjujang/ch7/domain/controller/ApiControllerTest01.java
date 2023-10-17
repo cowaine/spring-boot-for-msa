@@ -26,12 +26,12 @@ public class ApiControllerTest01 {
           String jsonRequest = JsonUtil.objectMapper.writeValueAsString(hotelRequest); // json2String
           
           mockMvc.perform(post("/hotels/fetch-by-name")
-                    .content(jsonRequest)
+                    .content(jsonRequest) // json body
                     .contentType(MediaType.APPLICATION_JSON))
                .andExpect(status().isOk())
                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-               .andExpect(jsonPath("$[0].hotelId", Matchers.is(1000)))
-               .andExpect(jsonPath("$[0].hotelName", Matchers.is("Ragged Point Inn")))
+               .andExpect(jsonPath("$[0].hotelId", Matchers.is(1000))) // 리턴된 객체의 json 내부값 확인
+               .andExpect(jsonPath("$[0].hotelName", Matchers.is("Ragged Point Inn"))) // $: 최상위 root. $[index].자식name
                .andDo(MockMvcResultHandlers.print(System.out));
                
      }
