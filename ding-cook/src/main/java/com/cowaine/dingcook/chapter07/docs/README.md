@@ -121,5 +121,12 @@ spring.main.allow-bean-definition-overriding=true
 
 ### 7.2.7 스프링 부트 웹 MVC 테스트
 
-[HotelController](../)
+테스트 패키지의 ControllerTest01, 02를 참조할 것.
+
+---
+
+## 7.3 스프링 부트 자동 설정
+
+스프링 부트는 보편적으로 자주 사용하는 형태로 기술을 미리 설정하여 제공한다.
+자동 설정의 핵심은 `@SpringBootApplication`에 포함되어 있는 `@EnableAutoConfiguration`이다.
 
