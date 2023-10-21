@@ -156,8 +156,8 @@ public class CorockApplication {
      */
     private static void testAop(ConfigurableApplicationContext ctx) {
         DisplayService displayService = ctx.getBean(DisplayService.class);
-        displayService.getHotelsByName(new HotelRequest("Ragged Point Inn"))
-                .forEach(hotelResponse -> log.info("response: {}", hotelResponse));
+        displayService.getHotelsByName(new HotelRequest("Ragged Point Inn"));
+                // .forEach(hotelResponse -> log.info("response: {}", hotelResponse));
     }
 
 }

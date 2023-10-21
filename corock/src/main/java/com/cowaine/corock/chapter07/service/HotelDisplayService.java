@@ -26,7 +26,8 @@ public class HotelDisplayService implements DisplayService {
         //         .filter(...)
         //         .map(...)
         //         .collect(Collectors.toList());
-        return List.of();
+        return List.of(HotelResponse.create(1_000L, "Ragged Point Inn", "18091 CA-1, San Simeon, CA 93452",
+                "+18885846374"));
     }
 
 }
