@@ -28,8 +28,8 @@ public class HotelDisplayService implements DisplayService {
 
         return List.of(
             new HotelResponse(1000L,
-                "아난티 기장",
-                "부산광역시 기장 어딘가..",
+                "ananty",
+                "busan ijanghaean",
                 "010-****-****"
             )
         );
