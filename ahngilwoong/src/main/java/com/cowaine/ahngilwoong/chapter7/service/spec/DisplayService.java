@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface DisplayService {
 
-    List<HotelResponse> getHotelsByName(HotelRequest hotelRequest);
+    List<HotelResponse> getHotelsByName();
 }

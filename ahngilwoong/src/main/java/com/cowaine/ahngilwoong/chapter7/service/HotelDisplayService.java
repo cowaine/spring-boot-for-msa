@@ -16,7 +16,7 @@ public class HotelDisplayService implements DisplayService {
 
     @Override
     @ElapseLoggable
-    public List<HotelResponse> getHotelsByName(HotelRequest hotelRequest) {
+    public List<HotelResponse> getHotelsByName() {
 
         try {
             TimeUnit.SECONDS.sleep(5);

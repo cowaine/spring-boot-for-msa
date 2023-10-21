@@ -21,8 +21,8 @@ public class HotelController {
     private final DisplayService displayService;
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, path = "/hotels/fetch-by-name")
-    public ResponseEntity<List<HotelResponse>> getHotelByName(@RequestBody HotelRequest hotelRequest) {
-        List<HotelResponse> hotelResponses = displayService.getHotelsByName(hotelRequest);
+    public ResponseEntity<List<HotelResponse>> getHotelByName() {
+        List<HotelResponse> hotelResponses = displayService.getHotelsByName();
         return ResponseEntity.ok(hotelResponses);
     }
 }
