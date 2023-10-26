@@ -17,3 +17,24 @@ spring:
         one-indexed-parameters: false # 1로 시작하고싶으면 true
       sort:
         sort-parameter: sortOrder
+  ## JPA configuration
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.MySQL8Dialect #mysql8 버전
+    hibernate:
+      ddl-auto: none
+
+  # dataSource type configuration
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    ## Hikari datasource config
+    hikari:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/tour?serverTimezone = UTC
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 1234
+
+
