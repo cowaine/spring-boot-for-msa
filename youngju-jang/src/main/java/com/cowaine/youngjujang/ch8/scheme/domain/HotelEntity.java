@@ -11,15 +11,16 @@ import javax.persistence.*;
 @Table (name = "hotels", indexes = @Index (name = "INDEX_NAME_STATUS", columnList = "name asc, status asc"))
 public class HotelEntity extends AbstractManageEntity {
      
-     @Id
-     @GeneratedValue (strategy = GenerationType.IDENTITY)
+     @Id // 클래스 기본키 설정
+     @GeneratedValue (strategy = GenerationType.IDENTITY) // 자동증가 기능
      @Column (name = "hotel_id")
      private Long hotelId;
      
      @Column (name = "status")
      private HotelStatus status;
      
-     @Column
+     // ddl-auto: create 이었을경우 아래처럼 컬럼 추가정의 필요
+     @Column(name = "name", nullable = false, length = 300)
      private String name;
      
      @Column

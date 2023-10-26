@@ -1,0 +1,43 @@
+## 1. GenerationType.TABLE
+- TBl_SEQUENCES 채번 테이블 : 공통테이블
+
+```JAVA
+ @GeneratedValue(strategy = GenerationType.TABLE, generator = "sequenceGenerator") // 1)
+ @TableGenerator(
+      name = "sequenceGenerator",  // 1) 에서 사용할 이름
+      table = "TBL_SEQUENCES", // 채번용 공통테이블
+      pkColumnName = "SEQUENCE_NAME",  // TBL_SEQUENCES 의 기본키
+      pkColumnValue = "HOTEL_SEQUENCE", // 채번테이블 기본키에 저장할 키 값. SEQUENCE_NAME 필드에 저장됨
+      valueColumnName = "SEQUENCE_VALUE", // 채번테이블 채번값 조회, 업데이트할 필드이름
+      initialValue = 10000, allocationSize = 100 // 초기값, 증가값
+ )
+ @Column
+ private Long hotelId;
+ ```
+
+ ## 2. GenerationType.SEQUENCE
+- DB에서 제공하는 시퀀스기능을 사용하여 기본키 값 설정
+
+// 1에서 시작, 1씩증가하는 sequence정의 ddl
+CREATE SEQUENCE hotel_sequence MINVALUE 1 START WITH 1 INCREMENT BY 1;
+
+```JAVA
+@SequenceGenerator(name = "hotel_generator", sequenceName = "hotel_sequence")
+@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hotel_generator")
+@Column
+private Long hotelId;
+```
+
+## GenerationType.IDENTITY
+- 디비에서 제공하는 자동증가기능으로 기본 키 값을 설정
+
+## GenerationType.AUTO
+- 디비에 따라 적절한 키생서전략 매핑
+    - 오라클 : 시퀀스방식,
+    - mysql: IDENTITY방식
+```java
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO) // <<<
+@Column
+private Long hotelId;
+```
