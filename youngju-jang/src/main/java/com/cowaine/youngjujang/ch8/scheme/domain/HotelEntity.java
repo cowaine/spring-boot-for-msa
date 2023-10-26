@@ -17,6 +17,7 @@ public class HotelEntity extends AbstractManageEntity {
      private Long hotelId;
      
      @Column (name = "status")
+     @Convert(converter = HotelStatusConverter.class)
      private HotelStatus status;
      
      // ddl-auto: create 이었을경우 아래처럼 컬럼 추가정의 필요
