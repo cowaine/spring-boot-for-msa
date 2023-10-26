@@ -36,5 +36,10 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
       password: 1234
+      connection-timeout: 5000
+      maximum-pool-size: 5
+      max-lifetime: 1800000
+      idle-timeout: 600000
+#      connection-test-query: select 1
 
 
