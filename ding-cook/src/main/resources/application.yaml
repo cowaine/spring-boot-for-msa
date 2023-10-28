@@ -13,7 +13,7 @@ server:
 
 spring:
   main:
-    allow-bean-definition-overriding: true
+    allow-bean-definition-overriding: false
   data:
     web:
       pageable:
@@ -23,3 +23,24 @@ spring:
         max-page-size: 2000 # 한번에 조회할 수 있는 페이지 크기 최댓값을 설정할 수 있다.
       sort:
         sort-parameter: sortOrder # 파라미터 이름인 sort 대신 sortOrder로 변경
+  jpa: # chapter08 JPA 설정 추가
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: none
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      jdbc-url: jdbc://127.0.0.1:3306/tour?serverTimezone = UTC
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 1q2w3e4r
+      connection-timeout: 5000
+      maximum-pool-size: 5
+      max-lifetime: 1800000
+      idle-timeout: 600000
+      #connection-test-query: select 1
+
