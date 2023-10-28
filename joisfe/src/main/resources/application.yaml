@@ -1,1 +1,23 @@
-
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/tour?serverTimezone=UTC
+    hikari:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/tour?serverTimezone=UTC
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 1q2w3e4r
+      connection-timeout: 5000
+      maximum-pool-size: 5
+      max-lifetime: 1800000
+      idle-timeout: 600000
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        generate_statistics: false
+    hibernate:
+      ddl-auto: none
+    open-in-view: false

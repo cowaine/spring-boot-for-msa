@@ -1,4 +1,4 @@
-package com.cowaine.joisfe.part5.domain;
+package com.cowaine.joisfe.part8.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
