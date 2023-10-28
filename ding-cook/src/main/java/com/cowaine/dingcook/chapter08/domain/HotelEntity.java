@@ -1,6 +1,8 @@
 package com.cowaine.dingcook.chapter08.domain;
 
+import com.cowaine.dingcook.chapter08.domain.converter.HotelStatusConverter;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -33,7 +35,8 @@ public class HotelEntity extends AbstractManageEntity {
     private Long hotelId;
 
     @Column(name = "status")
-    @Enumerated(value= EnumType.STRING)
+//    @Enumerated(value= EnumType.STRING)
+    @Convert(converter = HotelStatusConverter.class)
     private HotelStatus status;
 
     @Column(name = "name", nullable = false, length = 300)
