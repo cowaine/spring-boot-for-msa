@@ -2,6 +2,8 @@ package com.cowaine.dingcook.chapter08.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,6 +33,7 @@ public class HotelEntity extends AbstractManageEntity {
     private Long hotelId;
 
     @Column(name = "status")
+    @Enumerated(value= EnumType.STRING)
     private HotelStatus status;
 
     @Column(name = "name", nullable = false, length = 300)
