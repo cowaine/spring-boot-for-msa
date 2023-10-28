@@ -17,16 +17,17 @@ public class HotelEntity extends AbstractManageEntity {
 
     @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "sequenceGenerator")
-    @TableGenerator(
-        name = "sequenceGenerator",
-        table = "TBL_SEQENCES",
-        pkColumnName = "SEQUENCE_NAME",
-        pkColumnValue="HOTEL_SEQUENCE",
-        valueColumnName="SEQUENCE_VALUE",
-        initialValue=10000, allocationSize=100
-    )
-    @Column(name = "hotel_id")
+//    @GeneratedValue(strategy = GenerationType.TABLE, generator = "sequenceGenerator")
+//    @TableGenerator(
+//        name = "sequenceGenerator",
+//        table = "TBL_SEQENCES",
+//        pkColumnName = "SEQUENCE_NAME",
+//        pkColumnValue="HOTEL_SEQUENCE",
+//        valueColumnName="SEQUENCE_VALUE",
+//        initialValue=10000, allocationSize=100
+//    )
+//    @Column(name = "hotel_id")
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long hotelId;
 
     @Column(name = "status")
