@@ -1,1 +1,36 @@
-
+spring:
+  jpa:
+    properties:
+      hibernate:
+        generate_statistics: 'false'
+        format_sql: 'false'
+    hibernate:
+      ddl-auto: none
+    show-sql: 'true'
+    open-in-view: 'false'
+  datasource:
+    hikari:
+      idle-timeout: '600000'
+      maximum-pool-size: '5'
+      password: 1234
+      username: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/bitedu?serverTimezone=UTC
+      connection-timeout: '5000'
+      max-lifetime: '1800000'
+    url: jdbc:mysql://localhost:3306/tour?serverTimezone=UTC
+    type: com.zaxxer.hikari.HikariDataSource
+  main:
+    web-application-type: servlet
+server:
+  tomcat:
+    accesslog:
+      enabled: 'true'
+      suffix: log
+      rename-on-rotate: 'true'
+      prefix: access_log
+    connection-timeout: 30s
+    threads:
+      max: '100'
+      min-spare: '100'
+  port: '18080'
