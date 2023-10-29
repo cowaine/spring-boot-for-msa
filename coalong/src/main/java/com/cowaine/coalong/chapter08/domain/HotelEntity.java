@@ -1,5 +1,6 @@
 package com.cowaine.coalong.chapter08.domain;
 
+import com.cowaine.coalong.chapter08.domain.converter.HotelStatusConverter;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,8 +20,10 @@ public class HotelEntity extends AbstractManageEntity {
     @Column(name = "hotel_id")
     private Long hotel_id;
 
+    // @Enumerated(value = EnumType.STRING)
     @Column(name = "status")
-    @Enumerated(value = EnumType.STRING)
+    // 만약 전역 설정 안했다면 아래와 같이 명시적으로 컨버터 지정하여 사용
+    @Convert(converter = HotelStatusConverter.class)
     private HotelStatus status;
 
     @Column
