@@ -1,6 +1,6 @@
-package com.cowaine.youngjujang.ch8.scheme.domain;
+package com.cowaine.youngjujang.ch8.domain.domain;
 
-import com.cowaine.youngjujang.ch8.scheme.server.UserIdHoder;
+import com.cowaine.youngjujang.ch8.domain.server.UserIdHoder;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
