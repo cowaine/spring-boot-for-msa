@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Getter
-@Entity
+@Entity(name = "hotels")
 @NoArgsConstructor // 기본생성자 반드시 필요
 @Table (name = "hotels", indexes = @Index (name = "INDEX_NAME_STATUS", columnList = "name asc, status asc"))
 public class HotelEntity extends AbstractManageEntity {
