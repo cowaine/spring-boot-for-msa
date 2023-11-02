@@ -1,4 +1,4 @@
-package com.cowaine.youngjujang.ch8.domain.server;
+package com.cowaine.youngjujang.ch8.server;
 
 public class UserIdHoder {
      

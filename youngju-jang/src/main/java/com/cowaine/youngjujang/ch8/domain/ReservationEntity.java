@@ -1,4 +1,4 @@
-package com.cowaine.youngjujang.ch8.domain.domain;
+package com.cowaine.youngjujang.ch8.domain;
 
 import org.springframework.context.annotation.EnableMBeanExport;
 

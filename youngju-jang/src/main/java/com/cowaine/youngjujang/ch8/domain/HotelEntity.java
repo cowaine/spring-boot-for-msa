@@ -1,6 +1,6 @@
-package com.cowaine.youngjujang.ch8.domain.domain;
+package com.cowaine.youngjujang.ch8.domain;
 
-import com.cowaine.youngjujang.ch8.domain.domain.converter.HotelStatusConverter;
+import com.cowaine.youngjujang.ch8.domain.converter.HotelStatusConverter;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
