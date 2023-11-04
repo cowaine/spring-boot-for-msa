@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.AttributeConverter;
 import java.util.Objects;
 
-@Component
+// @Component
 public class HotelStatusConverter implements AttributeConverter<HotelStatus, Integer> {
 
     @Override

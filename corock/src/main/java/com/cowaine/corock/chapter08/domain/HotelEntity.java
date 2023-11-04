@@ -5,16 +5,16 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.Table;
 
-@Table(name = "hotels", indexes = @Index(name = "INDEX_NAME_STATUS", columnList = "name asc, status asc"))
+@Table(name = "hotels")
+// @Table(name = "hotels", indexes = @Index(name = "INDEX_NAME_STATUS", columnList = "name asc, status asc"))
 @Entity
 @Getter
 public class HotelEntity extends AbstractManageEntity {
@@ -24,7 +24,8 @@ public class HotelEntity extends AbstractManageEntity {
     @Column(name = "hotel_id")
     private Long hotelId;
 
-    @Enumerated(EnumType.STRING)
+    // @Enumerated(EnumType.STRING)
+    @Convert(converter = HotelStatusConverter.class)
     @Column
     private HotelStatus status;
 
