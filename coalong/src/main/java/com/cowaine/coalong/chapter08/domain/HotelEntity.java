@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Getter
-@Entity
-@Table(name = "hotels", indexes = @Index(name =
-        "INDEX_NAME_STATUS", columnList = "name asc, status asc"))
+@Entity(name = "hotels") /* createQuery 메소드에서는 테이블명이 아닌 Entity 클래스명으로 찾는다. */
+@Table(name = "hotels", indexes = @Index(name = "INDEX_NAME_STATUS", columnList = "name asc, status asc"))
 @NoArgsConstructor
 public class HotelEntity extends AbstractManageEntity {
 
