@@ -1,7 +1,6 @@
 spring:
   main:
     web-application-type: none
-
   jpa:
     open-in-view: false
     show-sql: true
@@ -14,6 +13,12 @@ spring:
         hbm2ddl:
     hibernate:
       ddl-auto: create-drop
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     generate-ddl: true
-
-
+  config:
+    activate:
+      on-profile: test2
+  h2:
+    console:
+      enabled: true

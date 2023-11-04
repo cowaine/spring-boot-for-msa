@@ -7,11 +7,18 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
+
 @DataJpaTest
+/* 다중속성문서를 사용할 때는 Active Profiles 으로 Profiles 설정 필요
+ #https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config */
+@ActiveProfiles("test2")
 @TestPropertySource(locations = "classpath:application-test2.yaml")
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)  // DataJPATest 에 포함되어있는 설정, Default 값은 ANY
 class HotelRepositoryTest01 {
 
     private static HotelEntity testHotelEntity;

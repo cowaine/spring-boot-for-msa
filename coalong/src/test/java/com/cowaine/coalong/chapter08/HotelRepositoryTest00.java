@@ -15,7 +15,7 @@ import javax.transaction.Transactional;
 
 @SpringBootTest
 @Transactional  /* 테스트가 끝난 후에 롤백한다. */
-@TestPropertySource(locations = "classpath:application-test.yaml")
+@TestPropertySource(locations = "classpath:application.yaml")
 class HotelRepositoryTest00 {
 
     private static HotelEntity testHotelEntity;
