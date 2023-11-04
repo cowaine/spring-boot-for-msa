@@ -1,13 +1,12 @@
-package com.cowaine.youngjujang;
+package com.cowaine.dingcook.chapter05;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class YoungjuJangApplication {
+public class Chapter05Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(YoungjuJangApplication.class, args);
+        SpringApplication.run(Chapter05Application.class);
     }
-
 }

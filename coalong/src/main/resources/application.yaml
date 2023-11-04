@@ -1,1 +1,36 @@
+server:
+  port: 0x628
+  tomcat:
+    threads:
+      min-spare: 100
+      max: 100
 
+spring:
+  main:
+    # 스프링 빈 이름을 중복하여 선언하는 경우 BeanDefinitionOverrideException 예외가 발생하는데,
+    # 스프링 프레임워크 5.1.0 버전부터(스프링 부트 2.1.0) 강제로 덮어쓰는 것을 제한한다.
+    allow-bean-definition-overriding: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/tour?serverTimezone = UTC
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 12345
+      connection-timeout: 5000
+      maximum-pool-size: 5
+      max-lifetime: 1800000
+      idle-timeout: 600000
+      # DataSource 에서 Connection 객체를 받아 올 때는 Connection 객체의 유효 여부를 판단하기 위해 테스트 쿼리를 실행할 수 있다.
+      # 성능에 영향을 미치므로 JDBC4를 사용하고 있다면 설정하지 않기를 권고한다.
+      connection-test-query: select 1
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: false
+    show-sql: false
