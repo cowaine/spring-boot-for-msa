@@ -18,7 +18,7 @@ spring:
     generate-ddl: true
   config:
     activate:
-      on-profile: test2
+      on-profile: test
   h2:
     console:
       enabled: true
