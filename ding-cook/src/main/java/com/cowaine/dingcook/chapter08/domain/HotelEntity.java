@@ -55,14 +55,14 @@ public class HotelEntity extends AbstractManageEntity {
         super();
     }
 
-    public static HotelEntity of(String name, String address, String phoneNumber, Integer roomCount) {
+    public static HotelEntity of(String name, String address, String phoneNumber) {
         HotelEntity hotelEntity = new HotelEntity();
 
         hotelEntity.name = name;
         hotelEntity.status = HotelStatus.READY;
         hotelEntity.address = address;
         hotelEntity.phoneNumber = phoneNumber;
-        hotelEntity.roomCount = roomCount;
+        hotelEntity.roomCount = 0;
 
         return hotelEntity;
     }
