@@ -4,8 +4,6 @@ import com.cowaine.dingcook.chapter08.domain.converter.HotelStatusConverter;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +13,7 @@ import javax.persistence.TableGenerator;
 import lombok.Getter;
 
 @Getter
-@Entity
+@Entity(name = "hotels")
 @Table(name = "hotels", indexes = @Index(name = "INDEX_NAME_STATUS", columnList = "name asc, status"))
 public class HotelEntity extends AbstractManageEntity {
 
