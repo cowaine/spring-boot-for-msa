@@ -1,12 +1,12 @@
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:3306/tour?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/tour
     hikari:
-      jdbc-url: jdbc:mysql://127.0.0.1:3306/tour?serverTimezone=UTC
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/tour
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
-      password: 1q2w3e4r
+      password: Cowaine!@#1
       connection-timeout: 5000
       maximum-pool-size: 5
       max-lifetime: 1800000
