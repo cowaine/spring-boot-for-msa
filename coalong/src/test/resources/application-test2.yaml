@@ -1,0 +1,19 @@
+spring:
+  main:
+    web-application-type: none
+
+  jpa:
+    open-in-view: false
+    show-sql: true
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+        generate_statistics: true
+        dialect: org.hibernate.dialect.H2Dialect
+        hbm2ddl:
+    hibernate:
+      ddl-auto: create-drop
+    generate-ddl: true
+
+
