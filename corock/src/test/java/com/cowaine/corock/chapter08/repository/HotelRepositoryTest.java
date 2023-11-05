@@ -29,8 +29,7 @@ class HotelRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        testHotelEntity = HotelEntity.of("The LINE LA", "3515 Wilshire Blvd, Los Angeles, CA 90010", "+12133817411",
-                                         100);
+        testHotelEntity = HotelEntity.of("The LINE LA", "3515 Wilshire Blvd, Los Angeles, CA 90010", "+12133817411");
     }
 
     @DisplayName("testFindByStatus")

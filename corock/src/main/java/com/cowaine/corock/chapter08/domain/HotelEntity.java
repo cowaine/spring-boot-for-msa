@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -11,7 +12,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Table(name = "hotels")
 // @Table(name = "hotels", indexes = @Index(name = "INDEX_NAME_STATUS", columnList = "name asc, status asc"))
@@ -41,6 +45,10 @@ public class HotelEntity extends AbstractManageEntity {
     @Column(name = "room_count")
     private Integer roomCount;
 
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "hotels_hotel_id", referencedColumnName = "hotel_id")
+    private List<HotelRoomEntity> hotelRoomEntities;
+
     protected HotelEntity() {
         super();
     }
@@ -54,14 +62,19 @@ public class HotelEntity extends AbstractManageEntity {
         this.roomCount = roomCount;
     }
 
-    public static HotelEntity of(String name, String address, String phoneNumber, Integer roomCount) {
+    public static HotelEntity of(String name, String address, String phoneNumber) {
         return HotelEntity.builder()
                 .name(name)
                 .status(HotelStatus.READY)
                 .address(address)
                 .phoneNumber(phoneNumber)
-                .roomCount(roomCount)
+                .roomCount(0)
                 .build();
+    }
+
+    public void addHotelRooms(List<HotelRoomEntity> hotelRoomEntities) {
+        this.roomCount += hotelRoomEntities.size();
+        this.hotelRoomEntities.addAll(hotelRoomEntities);
     }
 
 }
