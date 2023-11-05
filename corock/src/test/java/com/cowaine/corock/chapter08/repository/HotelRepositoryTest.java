@@ -4,15 +4,22 @@ import com.cowaine.corock.chapter08.domain.HotelEntity;
 import com.cowaine.corock.chapter08.domain.HotelStatus;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.TestPropertySource;
 
+import java.util.Optional;
+
+/**
+ * @see <a href="https://docs.spring.io/spring-boot/docs/2.7.5/reference/htmlsingle/#features.external-config.files.multi-document">Working With Multi-Document Files</a>
+ */
+// @SpringBootTest
 @DataJpaTest
-@TestPropertySource(locations = "classpath:application-test.yaml")
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@TestPropertySource(properties = { "spring.config.location=classpath:application-test-h2.yaml" })
+// @ActiveProfiles(profiles = "test-h2")
+// @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class HotelRepositoryTest {
 
     private static HotelEntity testHotelEntity;
@@ -26,17 +33,22 @@ class HotelRepositoryTest {
                                          100);
     }
 
+    @DisplayName("testFindByStatus")
     @Test
     void testFindByStatus() {
         // Given
         hotelRepository.save(testHotelEntity);
 
         // When
-        HotelEntity hotelEntity = hotelRepository.findByStatus(HotelStatus.READY)
+        Optional<HotelEntity> maybeHotelEntity = hotelRepository.findByStatus(HotelStatus.READY)
                 .stream()
                 .filter(h -> h.getHotelId().equals(testHotelEntity.getHotelId()))
-                .findFirst()
-                .get();
+                .findFirst();
+
+        HotelEntity hotelEntity = null;
+        if (maybeHotelEntity.isPresent()) {
+            hotelEntity = maybeHotelEntity.get();
+        }
 
         // Then
         Assertions.assertNotNull(hotelEntity);

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Table(name = "hotels")
 // @Table(name = "hotels", indexes = @Index(name = "INDEX_NAME_STATUS", columnList = "name asc, status asc"))
-@Entity
+@Entity(name = "hotels")
 @Getter
 public class HotelEntity extends AbstractManageEntity {
 
