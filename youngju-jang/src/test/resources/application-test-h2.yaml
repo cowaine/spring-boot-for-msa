@@ -1,0 +1,14 @@
+spring:
+  main:
+    web-application-type : none
+
+## JPA configuration
+  jpa:
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        generate_statistics: true
+        dialect: org.hibernate.dialect.H2Dialect
+        ddl-auto: create

@@ -1,4 +1,6 @@
-package com.cowaine.youngjujang.ch8.scheme.domain;
+package com.cowaine.youngjujang.ch8.domain.converter;
+
+import com.cowaine.youngjujang.ch8.domain.HotelStatus;
 
 import javax.persistence.AttributeConverter;
 import java.util.Objects;

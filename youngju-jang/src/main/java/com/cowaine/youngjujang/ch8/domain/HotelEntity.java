@@ -1,12 +1,13 @@
-package com.cowaine.youngjujang.ch8.scheme.domain;
+package com.cowaine.youngjujang.ch8.domain;
 
+import com.cowaine.youngjujang.ch8.domain.converter.HotelStatusConverter;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Getter
-@Entity
+@Entity(name = "hotels")
 @NoArgsConstructor // 기본생성자 반드시 필요
 @Table (name = "hotels", indexes = @Index (name = "INDEX_NAME_STATUS", columnList = "name asc, status asc"))
 public class HotelEntity extends AbstractManageEntity {
@@ -35,16 +36,13 @@ public class HotelEntity extends AbstractManageEntity {
      
      public static HotelEntity of(String name,
                                   String address,
-                                  String phoneNumber,
-                                  Integer roomCount){
+                                  String phoneNumber){
           HotelEntity hotelEntity = new HotelEntity();
-          
           hotelEntity.name = name;
           hotelEntity.status = HotelStatus.READY;
           hotelEntity.address = address;
           hotelEntity.phoneNumber = phoneNumber;
-          hotelEntity.roomCount = roomCount;
-          
+          hotelEntity.roomCount = 0;
           return hotelEntity;
      }
 }
