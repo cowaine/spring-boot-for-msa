@@ -11,7 +11,8 @@ import java.time.ZonedDateTime;
 @Slf4j
 @MappedSuperclass
 @Getter
-public class AbstractManageEntity {
+public abstract class AbstractManageEntity {
+
     @Column(name = "created_at")
     private ZonedDateTime createdAt;
 

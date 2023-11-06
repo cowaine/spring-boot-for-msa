@@ -4,6 +4,8 @@ import com.cowaine.crupy.part8.domain.converter.HotelStatusConverter;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -33,8 +35,13 @@ public class HotelEntity extends AbstractManageEntity {
     @Column(name = "room_count")
     private Integer roomCount;
 
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "hotels_hotel_id", referencedColumnName = "hotel_id")
+    private List<HotelRoomEntity> hotelRoomEntities;
+
     public HotelEntity() {
         super();
+        this.hotelRoomEntities = new ArrayList<>();
     }
 
     public static HotelEntity of(String name, String address, String phoneNumber) {
@@ -46,5 +53,10 @@ public class HotelEntity extends AbstractManageEntity {
         hotelEntity.phoneNumber = phoneNumber;
         hotelEntity.roomCount = 0;
         return hotelEntity;
+    }
+
+    public void addHotelRooms(List<HotelRoomEntity> hotelRoomEntities) {
+        this.roomCount += hotelRoomEntities.size();
+        this.hotelRoomEntities.addAll(hotelRoomEntities);
     }
 }
