@@ -5,10 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
-@Entity(name = "hotels")
-@NoArgsConstructor // 기본생성자 반드시 필요
+@Entity(name = "hotels") // 객체명(쿼리용)
+//@NoArgsConstructor // 기본생성자 반드시 필요
 @Table (name = "hotels", indexes = @Index (name = "INDEX_NAME_STATUS", columnList = "name asc, status asc"))
 public class HotelEntity extends AbstractManageEntity {
      
@@ -33,6 +35,14 @@ public class HotelEntity extends AbstractManageEntity {
      
      @Column (name = "room_count")
      private Integer roomCount;
+     
+     @OneToMany // 연관관계 설정해야 오류안뜸
+     private List<HotelRoomEntity> hotelRoomEntities;
+     
+     public HotelEntity() {
+          super();
+          this.hotelRoomEntities = new ArrayList<>();
+     }
      
      public static HotelEntity of(String name,
                                   String address,
