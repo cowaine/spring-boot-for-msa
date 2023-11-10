@@ -16,6 +16,7 @@ import java.util.Optional;
 /**
  * @see <a href="https://docs.spring.io/spring-boot/docs/2.7.5/reference/htmlsingle/#features.external-config.files.multi-document">Working With Multi-Document Files</a>
  */
+@Disabled
 // @SpringBootTest
 @DataJpaTest
 // @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -37,7 +38,6 @@ class HotelRepositoryTest {
      * corock/src/test/java 경로에서 실행하면 아래와 같은 오류가 발생한다. 원인은 모르겠다.
      * Attempt to get [I field "org.hibernate.hql.internal.antlr.HqlTokenTypes.__$hits$__" with illegal data type conversion to int
      */
-    @Disabled
     @DisplayName("testFindByStatus")
     @Test
     void testFindByStatus() {

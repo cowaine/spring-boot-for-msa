@@ -7,7 +7,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @TestConfiguration
 public class TestConfig {
 
-    @Bean(destroyMethod = "shutdown")
+    // @Bean(destroyMethod = "shutdown")
     public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         taskExecutor.setMaxPoolSize(1);
