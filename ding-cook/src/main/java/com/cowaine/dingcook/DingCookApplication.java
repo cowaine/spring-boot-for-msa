@@ -14,12 +14,12 @@ public class DingCookApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(DingCookApplication.class, args);
 
-        Environment environment = context.getBean(Environment.class);
-        String portValue = environment.getProperty("server.port");
-        log.info("Customized Port:{}", portValue);
-
-        Arrays.stream(context.getBeanDefinitionNames())
-              .forEach(name -> log.info("Bean Name: {}", name));
+//        Environment environment = context.getBean(Environment.class);
+//        String portValue = environment.getProperty("server.port");
+//        log.info("Customized Port:{}", portValue);
+//
+//        Arrays.stream(context.getBeanDefinitionNames())
+//              .forEach(name -> log.info("Bean Name: {}", name));
     }
 
 }
