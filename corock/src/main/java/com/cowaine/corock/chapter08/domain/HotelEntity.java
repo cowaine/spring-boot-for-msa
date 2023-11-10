@@ -15,7 +15,9 @@ import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Table(name = "hotels")
 // @Table(name = "hotels", indexes = @Index(name = "INDEX_NAME_STATUS", columnList = "name asc, status asc"))
@@ -51,10 +53,12 @@ public class HotelEntity extends AbstractManageEntity {
 
     protected HotelEntity() {
         super();
+        this.hotelRoomEntities = new ArrayList<>();
     }
 
     @Builder(access = AccessLevel.PRIVATE)
     private HotelEntity(HotelStatus status, String name, String address, String phoneNumber, Integer roomCount) {
+        // super();
         this.status = status;
         this.name = name;
         this.address = address;
@@ -63,6 +67,7 @@ public class HotelEntity extends AbstractManageEntity {
     }
 
     public static HotelEntity of(String name, String address, String phoneNumber) {
+        // return new HotelEntity(HotelStatus.READY, name, address, phoneNumber, 0);
         return HotelEntity.builder()
                 .name(name)
                 .status(HotelStatus.READY)
@@ -74,6 +79,10 @@ public class HotelEntity extends AbstractManageEntity {
 
     public void addHotelRooms(List<HotelRoomEntity> hotelRoomEntities) {
         this.roomCount += hotelRoomEntities.size();
+
+        if (Objects.isNull(this.hotelRoomEntities)) {
+            this.hotelRoomEntities = new ArrayList<>();
+        }
         this.hotelRoomEntities.addAll(hotelRoomEntities);
     }
 
