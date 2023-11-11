@@ -1,9 +1,12 @@
 package com.cowaine.joisfe.part8.service;
 
 import com.cowaine.joisfe.part8.domain.HotelEntity;
+import com.cowaine.joisfe.part8.domain.HotelRoomEntity;
 import com.cowaine.joisfe.part8.dto.HotelCreateRequestDto;
 import com.cowaine.joisfe.part8.dto.HotelCreateResponseDto;
 import com.cowaine.joisfe.part8.repository.HotelRepository;
+import com.cowaine.joisfe.part8.repository.HotelRoomRepository;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,8 @@ class HotelServiceTest {
 
     @Autowired
     private HotelRepository hotelRepository;
+    @Autowired
+    private HotelRoomRepository hotelRoomRepository;
 
     @Test
     public void testCreateHotel() {
@@ -34,6 +39,7 @@ class HotelServiceTest {
         //When
         HotelCreateResponseDto response = hotelService.createHotel(request);
         HotelEntity hotelEntity = hotelRepository.findById(response.getHotelId()).orElse(null);
+        List<HotelRoomEntity> hotelEntities = hotelRoomRepository.findByHotelId(response.getHotelId());
 
         //Then
         Assertions.assertNotNull(hotelEntity);
@@ -41,6 +47,7 @@ class HotelServiceTest {
         Assertions.assertEquals(request.getAddress(), hotelEntity.getAddress());
         Assertions.assertEquals(request.getPhoneNumber(), hotelEntity.getPhoneNumber());
         Assertions.assertEquals(request.getRoomCount(), hotelEntity.getRoomCount());
+        Assertions.assertEquals(request.getRoomCount(), hotelEntities.size());
     }
 
     @Test
