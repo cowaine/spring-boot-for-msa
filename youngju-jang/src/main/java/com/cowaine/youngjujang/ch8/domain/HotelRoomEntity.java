@@ -14,8 +14,9 @@ public class HotelRoomEntity {
      @Column(name = "hotel_room_id")
      private Long hotelRoomId;
      
-//     @ManyToOne
-//     private HotelEntity hotelEntity;
+     @ManyToOne
+     @JoinColumn(name = "hotel_id", nullable = true)
+     private HotelEntity hotelEntity;
      
      @Column(name = "hotels_hotel_id")
      private Long hotelId;
