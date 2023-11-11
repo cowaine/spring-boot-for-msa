@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class HotelEntity extends AbstractManageEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "hotel_id")
+    @Column(name = "hotel_no")
     private Long hotelId;
 
     // @Enumerated(EnumType.STRING)
@@ -48,8 +49,12 @@ public class HotelEntity extends AbstractManageEntity {
     private Integer roomCount;
 
     @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "hotels_hotel_id", referencedColumnName = "hotel_id")
+    @JoinColumn(name = "hotels_hotel_no", referencedColumnName = "hotel_no")
     private List<HotelRoomEntity> hotelRoomEntities;
+
+    @OneToOne
+    @JoinColumn(name = "parking_lot_no", referencedColumnName = "hotel_no")
+    private ParkingLotEntity parkingLotEntity;
 
     protected HotelEntity() {
         super();
