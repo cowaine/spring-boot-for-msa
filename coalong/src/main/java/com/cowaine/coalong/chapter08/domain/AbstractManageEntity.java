@@ -16,7 +16,7 @@ public class AbstractManageEntity {
     @Column(name = "created_at")
     private ZonedDateTime createdDate;
 
-    @Column(name = "create_by")
+    @Column(name = "created_by")
     private String createdBy;
 
     @Column(name = "modified_at")
