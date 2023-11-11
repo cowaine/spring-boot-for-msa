@@ -37,7 +37,15 @@ public class HotelEntity extends AbstractManageEntity {
      private Integer roomCount;
      
      @OneToMany // 연관관계 설정해야 오류안뜸
+     @JoinColumn(name = "hotels_hotel_id", referencedColumnName = "hotel_id") // fk : hotels_hotel_id => hotel table 의 hotel_id.
      private List<HotelRoomEntity> hotelRoomEntities;
+     /*
+     외래키가 여러개인 복합필드값 사용시 @JoinColumns , @JoinColumn 조합하여 사용가능
+     @JoinColumns({
+          @JoinColumn(name="head_quater_id", referencedColumnName = "id"),
+          @JoinColumn(name="head_quater_name", referencedColumnName = "name")
+     })
+     */
      
      public HotelEntity() {
           super();
