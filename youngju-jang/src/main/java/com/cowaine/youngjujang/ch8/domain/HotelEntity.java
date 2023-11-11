@@ -36,16 +36,10 @@ public class HotelEntity extends AbstractManageEntity {
      @Column (name = "room_count")
      private Integer roomCount;
      
-     @OneToMany // 연관관계 설정해야 오류안뜸
+     // OneToMany FetchType : 기본값 :LAZY , orphanRemoval : 기본 false >> true 일 경우 HotelRoomRepository를 사용한 delete 가 아니더라도 객체삭제시 삭제됨
+     @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true) // 연관관계 설정해야 오류안뜸 // cascade : 영속성전이 단계 설정
      @JoinColumn(name = "hotels_hotel_id", referencedColumnName = "hotel_id") // fk : hotels_hotel_id => hotel table 의 hotel_id.
      private List<HotelRoomEntity> hotelRoomEntities;
-     /*
-     외래키가 여러개인 복합필드값 사용시 @JoinColumns , @JoinColumn 조합하여 사용가능
-     @JoinColumns({
-          @JoinColumn(name="head_quater_id", referencedColumnName = "id"),
-          @JoinColumn(name="head_quater_name", referencedColumnName = "name")
-     })
-     */
      
      public HotelEntity() {
           super();
@@ -62,5 +56,10 @@ public class HotelEntity extends AbstractManageEntity {
           hotelEntity.phoneNumber = phoneNumber;
           hotelEntity.roomCount = 0;
           return hotelEntity;
+     }
+     
+     public void addHotelRooms(List<HotelRoomEntity> hotelRoomEntities) {
+          this.roomCount += hotelRoomEntities.size();
+          this.hotelRoomEntities.addAll(hotelRoomEntities);
      }
 }

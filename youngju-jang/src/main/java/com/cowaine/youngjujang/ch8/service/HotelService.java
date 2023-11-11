@@ -1,5 +1,6 @@
 package com.cowaine.youngjujang.ch8.service;
 
+import com.cowaine.youngjujang.ch5.domain.dto.HotelRoomType;
 import com.cowaine.youngjujang.ch8.controller.HotelCreateRequest;
 import com.cowaine.youngjujang.ch8.controller.HotelCreateResponse;
 import com.cowaine.youngjujang.ch8.domain.HotelEntity;
@@ -10,7 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 @Service
@@ -25,16 +29,21 @@ public class HotelService {
                createRequest.getName(),
                createRequest.getAddress(),
                createRequest.getPhoneNumber()
-          );
+          ); // hotelEntity : 비영속상태
+          
+          int roomCount = createRequest.getRoomCount();
+          List<HotelRoomEntity> hotelRoomEntities = IntStream.range(0, roomCount) //roomCount 개수만큼 hotelRoomEntities 생성
+               .mapToObj(i -> HotelRoomEntity.of("ROOM-" + i, HotelRoomType.DOUBLE,
+                    BigDecimal.valueOf(100)))
+               .collect(Collectors.toList());
+          hotelEntity.addHotelRooms(hotelRoomEntities); // addHotelRooms 으로 HotelRoomEntity가 hotelEntity 객체에 포함됨
+          
           // insert 있으므로 readOnly False
-          hotelRepository.save(hotelEntity); // 저장후
+          hotelRepository.save(hotelEntity); // 저장후 // hotelEntity : 영속상태로 변경됨, 트잭종료시 hotelEntity, hotelRoomEntities 모두 디비저장
+          // @OneToMany(cascade = CascadeType.PERSIST) PERSIST설정 없었다면 HotelRoomEntity 리스트는 저장안됐음
+          
           return HotelCreateResponse.of(hotelEntity.getHotelId());
      }
      
-     // 연관관계 적용하여 HotelRoomRepository 접근없이도 HotelRoomEntity 참조가능
-     public void readHotelRoomWithoutHotelRomeRepository(){
-          Long hotelId = 1L;
-          HotelEntity hotelEntity = hotelRepository.findById(hotelId).orElseThrow();
-          List<HotelRoomEntity> hotelRoomEntities = hotelEntity.getHotelRoomEntities();
-     }
+   
 }
