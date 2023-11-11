@@ -1,5 +1,6 @@
 package com.cowaine.corock.chapter08.domain;
 
+import com.cowaine.corock.chapter08.service.HotelAuditListener;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,9 +22,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * 호텔 개체다.
+ * <p>
+ * {@link HotelAuditListener} 클래스는 {@link HotelEntity} 객체에서 발생하는 이벤트를 처리하는 콜백 메서드가 포함된 리스너 클래스다.
+ *
+ * @since 1.0
+ */
 @Table(name = "hotels")
 // @Table(name = "hotels", indexes = @Index(name = "INDEX_NAME_STATUS", columnList = "name asc, status asc"))
 @Entity(name = "hotels")
+@EntityListeners(HotelAuditListener.class)
 @Getter
 public class HotelEntity extends AbstractManageEntity {
 
