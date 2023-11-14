@@ -37,7 +37,7 @@ public class HotelEntity extends AbstractManageEntity {
      private Integer roomCount;
      
      // OneToMany FetchType : 기본값 :LAZY , orphanRemoval : 기본 false >> true 일 경우 HotelRoomRepository를 사용한 delete 가 아니더라도 객체삭제시 삭제됨
-     @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true) // 연관관계 설정해야 오류안뜸 // cascade : 영속성전이 단계 설정
+     @OneToMany(mappedBy = "hotelEntity", cascade = CascadeType.PERSIST, orphanRemoval = true) // 연관관계 설정해야 오류안뜸 // cascade : 영속성전이 단계 설정
      @JoinColumn(name = "hotels_hotel_id", referencedColumnName = "hotel_id") // fk : hotels_hotel_id => hotel table 의 hotel_id.
      private List<HotelRoomEntity> hotelRoomEntities;
      
@@ -58,8 +58,16 @@ public class HotelEntity extends AbstractManageEntity {
           return hotelEntity;
      }
      
+     public void addRoom(HotelRoomEntity hotelRoomEntity){
+          hotelRoomEntity.setHotelEntity(this);
+          this.hotelRoomEntities.add(hotelRoomEntity);
+     }
+     
      public void addHotelRooms(List<HotelRoomEntity> hotelRoomEntities) {
           this.roomCount += hotelRoomEntities.size();
+          hotelRoomEntities.stream()
+               .peek(room -> room.setHotelEntity(this))
+               .close();
           this.hotelRoomEntities.addAll(hotelRoomEntities);
      }
 }

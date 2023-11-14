@@ -31,6 +31,9 @@ public class HotelRoomEntity {
      @Column(name = "original_price")
      private BigDecimal originalPrice;
      
+     public void setHotelEntity(HotelEntity hotelEntity){
+          this.hotelEntity = hotelEntity;
+     }
      public static HotelRoomEntity of(String roomNumber, HotelRoomType hotelRoomType, BigDecimal originalPrice) {
           HotelRoomEntity hotelRoomEntity = new HotelRoomEntity();
           hotelRoomEntity.roomNumber = roomNumber;
