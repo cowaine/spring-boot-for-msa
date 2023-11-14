@@ -1,6 +1,5 @@
 package com.cowaine.crupy.part8.domain;
 
-import com.cowaine.crupy.part5.dto.HotelRoomType;
 import com.cowaine.crupy.part6.domain.hotelroom.controller.converter.HotelRoomTypeConverter;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

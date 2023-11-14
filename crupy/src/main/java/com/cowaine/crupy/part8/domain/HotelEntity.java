@@ -1,6 +1,7 @@
 package com.cowaine.crupy.part8.domain;
 
 import com.cowaine.crupy.part8.domain.converter.HotelStatusConverter;
+import com.cowaine.crupy.part8.service.HotelAuditListener;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import java.util.List;
 @Table(name = "hotels",
         indexes = @Index(name = "INDEX_NAME_STATUS",
                 columnList = "name asc, status asc"))
+@EntityListeners(HotelAuditListener.class)
 public class HotelEntity extends AbstractManageEntity {
 
     @Id
