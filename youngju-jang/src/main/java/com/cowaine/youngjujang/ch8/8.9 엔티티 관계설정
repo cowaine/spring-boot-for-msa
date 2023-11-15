@@ -1,0 +1,19 @@
+ /*
+ 외래키가 여러개인 복합필드값 사용시 @JoinColumns , @JoinColumn 조합하여 사용가능
+ @JoinColumns({
+      @JoinColumn(name="head_quater_id", referencedColumnName = "id"),
+      @JoinColumn(name="head_quater_name", referencedColumnName = "name")
+ })
+ */
+
+
+// 연관관계 적용하여 HotelRoomRepository 접근없이도 HotelRoomEntity 참조가능
+  public void readHotelRoomWithoutHotelRomeRepository(){
+       Long hotelId = 1L;
+       HotelEntity hotelEntity = hotelRepository.findById(hotelId).orElseThrow();
+       List<HotelRoomEntity> hotelRoomEntities = hotelEntity.getHotelRoomEntities();
+  }
+
+ ## OneToMany
+ - FetchType : 기본값 :LAZY ,
+ - orphanRemoval : 기본 false >> true 일 경우 HotelRoomRepository를 사용한 delete 가 아니더라도 객체삭제시 삭제됨
