@@ -1,5 +1,6 @@
 package com.cowaine.youngjujang.ch9.config;
 
+import com.cowaine.youngjujang.ch9.server.IdentityHeaderInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestFactory;

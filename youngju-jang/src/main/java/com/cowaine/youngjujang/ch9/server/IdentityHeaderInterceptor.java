@@ -15,7 +15,7 @@ public class IdentityHeaderInterceptor implements ClientHttpRequestInterceptor {
      
      @Override
      public ClientHttpResponse intercept(HttpRequest request,
-                                         byte[] body, 
+                                         byte[] body,
                                          ClientHttpRequestExecution execution) throws IOException {
           request.getHeaders().addIfAbsent(COMPONENT_HEADER_NAME, COMPOENT_HEADER_VALUE); // 헤더설정 없을시 기본값 넣기
           return execution.execute(request,body); // 다음 인터셉터로 요청 전달
