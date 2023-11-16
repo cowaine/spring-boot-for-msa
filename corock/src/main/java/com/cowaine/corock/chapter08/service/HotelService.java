@@ -1,10 +1,10 @@
 package com.cowaine.corock.chapter08.service;
 
-import com.cowaine.corock.chapter05.HotelRoomType;
 import com.cowaine.corock.chapter08.controller.HotelCreateRequest;
 import com.cowaine.corock.chapter08.controller.HotelCreateResponse;
 import com.cowaine.corock.chapter08.domain.HotelEntity;
 import com.cowaine.corock.chapter08.domain.HotelRoomEntity;
+import com.cowaine.corock.chapter08.domain.HotelRoomType;
 import com.cowaine.corock.chapter08.repository.HotelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,9 +33,9 @@ public class HotelService {
                 .collect(Collectors.toList());
         hotelEntity.addHotelRooms(hotelRoomEntities);
 
-        hotelRepository.save(hotelEntity);
+        HotelEntity savedHotelEntity = hotelRepository.save(hotelEntity);
 
-        return HotelCreateResponse.of(hotelEntity.getHotelId());
+        return HotelCreateResponse.of(savedHotelEntity.getHotelId());
     }
 
 }

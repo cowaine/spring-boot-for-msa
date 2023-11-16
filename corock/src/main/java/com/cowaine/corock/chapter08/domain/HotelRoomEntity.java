@@ -1,7 +1,6 @@
 package com.cowaine.corock.chapter08.domain;
 
-import com.cowaine.corock.chapter05.HotelRoomType;
-import com.cowaine.corock.chapter06.controller.converter.HotelRoomTypeConverter;
+import com.cowaine.corock.chapter08.domain.converter.HotelRoomTypeConverter;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

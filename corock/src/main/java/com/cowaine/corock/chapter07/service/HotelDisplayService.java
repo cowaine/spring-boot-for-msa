@@ -11,6 +11,7 @@ import java.util.List;
 public class HotelDisplayService implements DisplayService {
 
     @ElapseLoggable
+    @Override
     public List<HotelResponse> getHotelsByName(HotelRequest hotelRequest) {
         // 로깅 로직
 

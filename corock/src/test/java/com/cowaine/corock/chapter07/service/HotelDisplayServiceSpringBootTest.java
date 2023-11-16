@@ -9,15 +9,16 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
 import java.util.List;
 
 @SpringBootTest
-// @Import(TestConfig.class)
-@ContextConfiguration(classes = TestConfig.class)
-@TestPropertySource(locations = "classpath:application-test.yaml")
+@Import(TestConfig.class)
+// @ContextConfiguration(classes = TestConfig.class)
+@TestPropertySource(properties = { "spring.config.location=classpath:application-test-h2.yaml" })
 class HotelDisplayServiceSpringBootTest {
 
     @Autowired
