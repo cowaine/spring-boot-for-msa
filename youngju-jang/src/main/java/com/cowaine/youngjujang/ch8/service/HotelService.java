@@ -51,7 +51,7 @@ public class HotelService {
                     @Override
                     public void afterCommit() {
                          super.afterCommit(); // 호텔API커밋 후에 Billing API에 데이터 동기화(마이크로 배치 사용)
-                         billingApiAdapter.registerHotelCode(hotelEntity.getHotelId());
+//                         billingApiAdapter.registerHotelCode(hotelEntity.getHotelId());
                     }
                }
           );
