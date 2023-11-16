@@ -78,22 +78,24 @@ public class BillingAdapter {
           return CreateCodeResponse.of(dataMap.get("codes"));
      }
      
-     public List<BillingCodeResponse> getBillingCodes(String codeNameParam) {
-          UriComponentsBuilder builder = UriComponentsBuilder.fromPath("/billing-codes")
-               .scheme("http").host("127.0.0.1").port(8080);
+     // Get Method 예제
+     public List<BillingCodeResponse> getBillingCodes(String codeNameParam) { // List<BillingCodeResponse> : Response 의 Data 부분이 될 것
+          UriComponentsBuilder builder = UriComponentsBuilder.fromPath("/billing-codes") // fromPath : 서버 리소스경로 입력
+               .scheme("http").host("127.0.0.1").port(8080); // 프로토콜, 서버주소, 포트 설정
           
           if (Objects.nonNull(codeNameParam))
                builder.queryParam("codeName", codeNameParam);
           
           URI uri = builder.build(false).encode().toUri();
           
-          ResponseEntity<ApiResponse> responseEntity = restTemplate.getForEntity(uri, ApiResponse.class);
-          if (HttpStatus.OK != responseEntity.getStatusCode()) {
+          // getForEntity : Get메서드 기본임
+          ResponseEntity<ApiResponse> responseEntity = restTemplate.getForEntity(uri, ApiResponse.class); // get이 기본. uri, 클래스타입 받아 서버에 요청함
+          if (HttpStatus.OK != responseEntity.getStatusCode()) {// response 응답메시지 상태코드를 HttpStatus로 변환 . 실패여부 확인
                log.error("Error from Billing. status:{}, param:{}", responseEntity.getStatusCode(), codeNameParam);
                throw new RuntimeException("Error from Billing. " + responseEntity.getStatusCode());
           }
           
-          ApiResponse apiResponse = responseEntity.getBody();
-          return (List<BillingCodeResponse>) apiResponse.getData();
+          ApiResponse apiResponse = responseEntity.getBody(); // 응답 메시지 바디값 리턴, getForEntity(uri, ApiResponse.class)의 인자타입으로.
+          return (List<BillingCodeResponse>) apiResponse.getData(); // ApiResponse 제네릭설정안했으니 data : Object >> 타입캐스팅 해줌
      }
 }
