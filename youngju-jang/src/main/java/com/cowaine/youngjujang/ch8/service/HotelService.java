@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -41,6 +43,18 @@ public class HotelService {
           // insert 있으므로 readOnly False
           hotelRepository.save(hotelEntity); // 저장후 // hotelEntity : 영속상태로 변경됨, 트잭종료시 hotelEntity, hotelRoomEntities 모두 디비저장
           // @OneToMany(cascade = CascadeType.PERSIST) PERSIST설정 없었다면 HotelRoomEntity 리스트는 저장안됐음
+          
+          // ch9 - 599p
+          // afterCommit() > Transaction 과 Rest-Api 분리
+          TransactionSynchronizationManager.registerSynchronization(
+               new TransactionSynchronizationAdapter() {
+                    @Override
+                    public void afterCommit() {
+                         super.afterCommit(); // 호텔API커밋 후에 Billing API에 데이터 동기화(마이크로 배치 사용)
+                         billingApiAdapter.registerHotelCode(hotelEntity.getHotelId());
+                    }
+               }
+          );
           
           return HotelCreateResponse.of(hotelEntity.getHotelId());
      }
