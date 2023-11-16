@@ -1,6 +1,6 @@
 package com.cowaine.joisfe.part8.converter;
 
-import com.cowaine.joisfe.part5.domain.HotelRoomType;
+import com.cowaine.joisfe.part8.domain.HotelRoomType;
 import java.util.Objects;
 import javax.persistence.AttributeConverter;
 import org.springframework.stereotype.Component;

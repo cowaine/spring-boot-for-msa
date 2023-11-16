@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
  * @author : 조재철
  * @since 1.0
  */
-@Repository
+//@Repository
 public class HotelRoomRepository {
 
     public HotelRoomEntity findById(Long id) {
