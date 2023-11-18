@@ -5,8 +5,14 @@ import com.cowaine.joisfe.part3.Formatter;
 import com.cowaine.joisfe.part3.LifeCycleComponent;
 import com.cowaine.joisfe.part3.PriceUnit;
 import com.cowaine.joisfe.part3.PrintableBeanPostProcessor;
+import com.cowaine.joisfe.part9.adapter.BillingAdapter;
+import com.cowaine.joisfe.part9.adapter.PoolingBillingAdapter;
+import com.cowaine.joisfe.part9.adapter.WebClientBillingAdapter;
+import com.cowaine.joisfe.part9.dto.BillingCodeResponse;
+import com.cowaine.joisfe.part9.dto.CreateCodeResponse;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Locale;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -66,6 +72,31 @@ public class JoisfeApplication {
             });
         }
 
+        BillingAdapter billingAdapter = applicationContext.getBean(BillingAdapter.class);
+
+        List<BillingCodeResponse> responses =
+            billingAdapter.getBillingCodes("CODE:1231231");
+        log.info("1. Result : {}", responses);
+
+        CreateCodeResponse createCodeResponse =
+            billingAdapter.create(List.of(1231231L));
+        log.info("2. Result : {}", createCodeResponse);
+
+        CreateCodeResponse codeResponse =
+            billingAdapter.createBillingCode(List.of(9000L, 8000L, 7000L));
+        log.info("3. Result : {}", codeResponse);
+
+        PoolingBillingAdapter poolingBillingAdapter = applicationContext.getBean(PoolingBillingAdapter.class);
+
+        CreateCodeResponse poolingBillingCodeResponse =
+            poolingBillingAdapter.createBillingCode(List.of(19000L, 18000L, 17000L));
+        log.info("Result : {}", poolingBillingCodeResponse);
+
+        WebClientBillingAdapter webClientBillingAdapter = applicationContext.getBean(WebClientBillingAdapter.class);
+
+        CreateCodeResponse webClientBillingCodeResponse =
+            webClientBillingAdapter.createBillingCode(List.of(19000L, 18000L, 17000L));
+        log.info("Result : {}", webClientBillingCodeResponse);
 //        applicationContext.close();
     }
 
