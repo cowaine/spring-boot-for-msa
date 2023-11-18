@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronization;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -35,7 +37,14 @@ public class HotelService {
 
         HotelEntity savedHotelEntity = hotelRepository.save(hotelEntity);
 
-        return HotelCreateResponse.of(savedHotelEntity.getHotelId());
+        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
+            @Override
+            public void afterCommit() {
+                // billingApiAdaptor.registerHotelCode(hotelEntity.getHotelId());
+            }
+        });
+
+        return HotelCreateResponse.of(hotelEntity.getHotelId());
     }
 
 }
