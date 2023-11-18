@@ -1,11 +1,11 @@
 ### GET
 
-GET 127.0.0.1:8080/billing-codes
+GET 127.0.0.1:1576/billing-codes
 Accept: application/json
 
 ### POST
 
-POST 127.0.0.1:8080/billing-codes
+POST 127.0.0.1:1576/billing-codes
 Content-Type: application/json
 Accept: application/json
 
