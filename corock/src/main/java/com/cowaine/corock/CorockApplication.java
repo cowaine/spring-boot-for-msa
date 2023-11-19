@@ -7,6 +7,9 @@ import com.cowaine.corock.chapter03.lifecycle.LifeCycleComponent;
 import com.cowaine.corock.chapter03.lifecycle.PrintableBeanPostProcessor;
 import com.cowaine.corock.chapter07.dto.HotelRequest;
 import com.cowaine.corock.chapter07.service.DisplayService;
+import com.cowaine.corock.chapter09.adaptor.BillingAdaptor;
+import com.cowaine.corock.chapter09.billing.BillingCodeResponse;
+import com.cowaine.corock.chapter09.billing.CreateCodeResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.SpringApplication;
@@ -23,6 +26,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
@@ -33,7 +37,18 @@ import java.util.stream.IntStream;
 public class CorockApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CorockApplication.class, args);
+        ConfigurableApplicationContext ctx = SpringApplication.run(CorockApplication.class, args);
+
+        BillingAdaptor billingAdaptor = ctx.getBean(BillingAdaptor.class);
+
+        List<BillingCodeResponse> responses = billingAdaptor.getBillingCodes("CODE:1231231");
+        log.info("1. Result: {}", responses);
+
+        CreateCodeResponse createCodeResponse = billingAdaptor.create(List.of(1231231L));
+        log.info("2. Result: {}", createCodeResponse);
+
+        CreateCodeResponse codeResponse = billingAdaptor.createBillingCode(List.of(9_000L, 8_000L, 7_000L));
+        log.info("3. Result: {}", codeResponse);
 
         // CorockApplication.p99(ctx);
         // CorockApplication.p110(ctx);

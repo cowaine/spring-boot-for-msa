@@ -1,0 +1,15 @@
+# 1. 빌링 코드를 조회하는 API
+GET /billing-codes?codeName=HTTP/1.0
+Accept: application/json
+
+###
+
+# 2. 빌링 코드를 등록하는 API
+POST /billing-codes HTTP/1.0
+Content-Type: application/json
+Accept: application/json
+
+{
+  "type": 1,
+  "hotelIds": [ "111", "112", "113" ]
+}
