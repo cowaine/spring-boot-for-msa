@@ -43,4 +43,4 @@ spring:
       max-lifetime: 1800000
       idle-timeout: 600000
       #connection-test-query: select 1
-
+    

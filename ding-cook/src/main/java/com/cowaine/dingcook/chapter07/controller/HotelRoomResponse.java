@@ -14,11 +14,11 @@ public class HotelRoomResponse {
     private Integer bedCount;
     private Integer bathCount;
 
-    public static HotelRoomResponse from(HotelRoomEntity hotelRoomEntity) {
-        return new HotelRoomResponse(hotelRoomEntity.getId(),
-            hotelRoomEntity.getCode(),
-            hotelRoomEntity.getFloor(),
-            hotelRoomEntity.getBedCount(),
-            hotelRoomEntity.getBathCount());
-    }
+//    public static HotelRoomResponse from(HotelRoomEntity hotelRoomEntity) {
+//        return new HotelRoomResponse(hotelRoomEntity.getId(),
+//            hotelRoomEntity.getCode(),
+//            hotelRoomEntity.getFloor(),
+//            hotelRoomEntity.getBedCount(),
+//            hotelRoomEntity.getBathCount());
+//    }
 }
