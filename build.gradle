@@ -32,8 +32,9 @@ subprojects {
 
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-web'
-        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
         implementation 'org.springframework.boot:spring-boot-starter-validation'
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
         // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
         implementation 'org.apache.httpcomponents:httpclient:4.5.14'
