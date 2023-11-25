@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.RedisSentinelConfiguration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
@@ -37,5 +38,19 @@ public class CacheConfig {
 
         return new LettuceConnectionFactory(configuration, lettuceClientConfiguration);
     }
+
+    @Bean
+    public RedisConnectionFactory cacheRedisSentineConnectionFactory() {
+        RedisSentinelConfiguration configuration = new RedisSentinelConfiguration();
+        // 레디스 센티넬이 모니터링할 레디스 서버 중 마스터 서버 이름
+        configuration.setMaster("REDIS_MASTER_NAME");
+        // sentinel() 메서드는 레디스 센티넬 서버를 추가하는 기능
+        configuration.sentinel("127.0.0.1", 19999);
+        configuration.sentinel("127.0.0.1", 19998);
+        configuration.sentinel("127.0.0.1", 19997);
+        configuration.setPassword("password");
+        return new LettuceConnectionFactory(configuration);
+    }
+
 
 }
