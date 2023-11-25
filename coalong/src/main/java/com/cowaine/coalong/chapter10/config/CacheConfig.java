@@ -1,5 +1,9 @@
 package com.cowaine.coalong.chapter10.config;
 
+import com.cowaine.coalong.chapter10.cache.HotelCacheKey;
+import com.cowaine.coalong.chapter10.cache.HotelCacheKeySerializer;
+import com.cowaine.coalong.chapter10.cache.HotelCacheValue;
+import com.cowaine.coalong.chapter10.cache.HotelCacheValueSerializer;
 import io.lettuce.core.ClientOptions;
 import io.lettuce.core.SocketOptions;
 import lombok.extern.slf4j.Slf4j;
@@ -8,10 +12,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.*;
 import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import java.time.Duration;
 import java.util.List;
 
+
+/**
+ * RedisConnectionFactory 2가지 구성 설정(레디스 단일, 레디스 센티넬, 레디스 클러스터) == application.yaml 의 autoconfiguration 설정
+ * RedisTemplate<HotelCacheKey, HotelCacheValue> 설정
+ */
 @Slf4j
 @Configuration
 public class CacheConfig {
@@ -63,6 +73,15 @@ public class CacheConfig {
         ));
 
         return new LettuceConnectionFactory(configuration);
+    }
+
+    @Bean(name = "hotelCacheRedisTemplate")
+    public RedisTemplate<HotelCacheKey, HotelCacheValue> hotelCacheRedisTemplate() {
+        RedisTemplate<HotelCacheKey, HotelCacheValue> hotelCacheRedisTemplate = new RedisTemplate<>();
+        hotelCacheRedisTemplate.setConnectionFactory(cacheRedisConnectionFactory());
+        hotelCacheRedisTemplate.setKeySerializer(new HotelCacheKeySerializer());
+        hotelCacheRedisTemplate.setValueSerializer(new HotelCacheValueSerializer());
+        return hotelCacheRedisTemplate;
     }
 
 }
