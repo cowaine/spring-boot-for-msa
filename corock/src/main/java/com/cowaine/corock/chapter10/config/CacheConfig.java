@@ -16,6 +16,7 @@ import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
 import java.time.Duration;
 import java.util.List;
@@ -68,6 +69,7 @@ public class CacheConfig {
         RedisTemplate<HotelCacheKey, HotelCacheValue> hotelCacheRedisTemplate = new RedisTemplate<>();
         hotelCacheRedisTemplate.setConnectionFactory(this.cacheRedisConnectionFactory());
         hotelCacheRedisTemplate.setHashKeySerializer(new HotelCacheKeySerializer());
+        hotelCacheRedisTemplate.setHashValueSerializer(new Jackson2JsonRedisSerializer<>(HotelCacheValue.class));
         hotelCacheRedisTemplate.setValueSerializer(new HotelCacheValueSerializer());
 
         return hotelCacheRedisTemplate;
