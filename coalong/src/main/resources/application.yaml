@@ -34,3 +34,21 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: false
     show-sql: false
+
+
+    # 레디스 한 대
+  redis:
+    url: 127.0.0.1
+    port: 19999
+    timeout: 1s           # 레디스 서버에 명령어를 전달하고 결과를 받을 때까지 최대 시간 설정
+    connect-timeout: 3s   # 레디스 서버와 클라이언트 사이에 커넥션을 생성할 때 걸리는 최대 시간 설정
+
+    # 레디스 클러스터
+    cluster:
+      nodes: 127.0.0.1:19999,127.0.0.1:19998,127.0.0.1:19997    # 레디스 클러스터의 노드 주소
+      max-redirects: 3    # 잘못된 노드에 데이터를 조회할 때 데이터를 저장한 노드로 리다이렉션하는 횟수
+
+    # 레디스 센티넬
+    sentinel:
+      master: REDIS_MASTER_NAME                                 # 레디스 센티넬이 모니터링할 레디스 서버 중 마스터 서버 이름
+      nodes: 127.0.0.1:19999,127.0.0.1:19998,127.0.0.1:19997    # 레디스 센티넬들의 노드 주소
