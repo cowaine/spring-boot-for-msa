@@ -5,13 +5,12 @@ import io.lettuce.core.SocketOptions;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.RedisSentinelConfiguration;
-import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+import org.springframework.data.redis.connection.*;
 import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 
 import java.time.Duration;
+import java.util.List;
 
 @Slf4j
 @Configuration
@@ -52,5 +51,18 @@ public class CacheConfig {
         return new LettuceConnectionFactory(configuration);
     }
 
+    @Bean
+    public RedisConnectionFactory cacheRedisClusterConnectionFactory() {
+        RedisClusterConfiguration configuration = new RedisClusterConfiguration();
+        // 에러시 Moved Redirection 처리 횟수를 설정
+        configuration.setMaxRedirects(3);
+        configuration.setClusterNodes(List.of(
+                new RedisNode("127.0.0.1", 19999),
+                new RedisNode("127.0.0.1", 19998),
+                new RedisNode("127.0.0.1", 19997)
+        ));
+
+        return new LettuceConnectionFactory(configuration);
+    }
 
 }
