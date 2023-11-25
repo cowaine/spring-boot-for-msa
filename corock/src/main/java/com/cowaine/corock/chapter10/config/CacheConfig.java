@@ -4,6 +4,7 @@ import io.lettuce.core.ClientOptions;
 import io.lettuce.core.SocketOptions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisNode;
 import org.springframework.data.redis.connection.RedisSentinelConfiguration;
@@ -43,6 +44,16 @@ public class CacheConfig {
         List<RedisNode> redisNodes = List.of(new RedisNode("127.0.0.1", 19999),
                 new RedisNode("127.0.0.1", 19998), new RedisNode("127.0.0.1", 19997));
         configuration.setSentinels(redisNodes);
+
+        return new LettuceConnectionFactory(configuration);
+    }
+
+    @Bean
+    public RedisConnectionFactory cacheRedisClusterConnectionFactory() {
+        RedisClusterConfiguration configuration = new RedisClusterConfiguration();
+        configuration.setMaxRedirects(3);
+        configuration.setClusterNodes(List.of(new RedisNode("127.0.0.1", 19999),
+                new RedisNode("127.0.0.1", 19998), new RedisNode("127.0.0.1", 19997)));
 
         return new LettuceConnectionFactory(configuration);
     }
