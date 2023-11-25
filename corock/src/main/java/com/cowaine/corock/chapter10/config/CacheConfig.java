@@ -1,5 +1,9 @@
 package com.cowaine.corock.chapter10.config;
 
+import com.cowaine.corock.chapter10.adaptor.cache.HotelCacheKey;
+import com.cowaine.corock.chapter10.adaptor.cache.HotelCacheKeySerializer;
+import com.cowaine.corock.chapter10.adaptor.cache.HotelCacheValue;
+import com.cowaine.corock.chapter10.adaptor.cache.HotelCacheValueSerializer;
 import io.lettuce.core.ClientOptions;
 import io.lettuce.core.SocketOptions;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +15,7 @@ import org.springframework.data.redis.connection.RedisSentinelConfiguration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import java.time.Duration;
 import java.util.List;
@@ -56,6 +61,16 @@ public class CacheConfig {
                 new RedisNode("127.0.0.1", 19998), new RedisNode("127.0.0.1", 19997)));
 
         return new LettuceConnectionFactory(configuration);
+    }
+
+    @Bean
+    public RedisTemplate<HotelCacheKey, HotelCacheValue> hotelCacheRedisTemplate() {
+        RedisTemplate<HotelCacheKey, HotelCacheValue> hotelCacheRedisTemplate = new RedisTemplate<>();
+        hotelCacheRedisTemplate.setConnectionFactory(this.cacheRedisConnectionFactory());
+        hotelCacheRedisTemplate.setHashKeySerializer(new HotelCacheKeySerializer());
+        hotelCacheRedisTemplate.setValueSerializer(new HotelCacheValueSerializer());
+
+        return hotelCacheRedisTemplate;
     }
 
 }
