@@ -78,7 +78,10 @@ public class CacheConfig {
     @Bean(name = "hotelCacheRedisTemplate")
     public RedisTemplate<HotelCacheKey, HotelCacheValue> hotelCacheRedisTemplate() {
         RedisTemplate<HotelCacheKey, HotelCacheValue> hotelCacheRedisTemplate = new RedisTemplate<>();
+        // RedisConnectionFactory 스프링 빈을 setConnectionFactory() 메서드를 사용하여 RedisTemplate 객체에 설정
         hotelCacheRedisTemplate.setConnectionFactory(cacheRedisConnectionFactory());
+
+        // RedisSerializer 구현체를  setKeySerializer()와 setValueSerializer() 메서드를 사용하여 설정
         hotelCacheRedisTemplate.setKeySerializer(new HotelCacheKeySerializer());
         hotelCacheRedisTemplate.setValueSerializer(new HotelCacheValueSerializer());
         return hotelCacheRedisTemplate;
