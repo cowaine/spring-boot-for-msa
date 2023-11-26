@@ -1,8 +1,9 @@
 package com.cowaine.corock.chapter10.adaptor.cache;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class HotelCacheKey {
+public class HotelCacheKey implements Serializable {
 
     private static final String PREFIX = "HOTEL::";
 
