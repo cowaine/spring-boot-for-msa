@@ -4,7 +4,7 @@ import com.cowaine.corock.chapter09.server.IdentityHeaderInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestFactory;
-import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,13 +21,13 @@ public class RestTemplateConfig {
      */
     @Bean
     public ClientHttpRequestFactory clientHttpRequestFactory() {
-        OkHttp3ClientHttpRequestFactory factory = new OkHttp3ClientHttpRequestFactory();
+        SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
 
         factory.setConnectTimeout(3_000);
         factory.setReadTimeout(1_000);
 
         // SimpleClientHttpRequestFactory only
-        // factory.setBufferRequestBody(false);
+        factory.setBufferRequestBody(false);
 
         return factory;
     }

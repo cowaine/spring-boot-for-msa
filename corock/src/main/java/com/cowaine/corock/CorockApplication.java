@@ -37,18 +37,7 @@ import java.util.stream.IntStream;
 public class CorockApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext ctx = SpringApplication.run(CorockApplication.class, args);
-
-        BillingAdaptor billingAdaptor = ctx.getBean(BillingAdaptor.class);
-
-        List<BillingCodeResponse> responses = billingAdaptor.getBillingCodes("CODE:1231231");
-        log.info("1. Result: {}", responses);
-
-        CreateCodeResponse createCodeResponse = billingAdaptor.create(List.of(1231231L));
-        log.info("2. Result: {}", createCodeResponse);
-
-        CreateCodeResponse codeResponse = billingAdaptor.createBillingCode(List.of(9_000L, 8_000L, 7_000L));
-        log.info("3. Result: {}", codeResponse);
+        SpringApplication.run(CorockApplication.class, args);
 
         // CorockApplication.p99(ctx);
         // CorockApplication.p110(ctx);
@@ -59,6 +48,8 @@ public class CorockApplication {
         // CorockApplication.p162(ctx);
 
         // CorockApplication.testAop(ctx);
+
+        // CorockApplication.p603(ctx);
     }
 
     private static void p99(ConfigurableApplicationContext ctx) {
@@ -174,6 +165,19 @@ public class CorockApplication {
         DisplayService displayService = ctx.getBean(DisplayService.class);
         displayService.getHotelsByName(new HotelRequest("Ragged Point Inn"));
                 // .forEach(hotelResponse -> log.info("response: {}", hotelResponse));
+    }
+
+    private static void p603(ConfigurableApplicationContext ctx) {
+        BillingAdaptor billingAdaptor = ctx.getBean(BillingAdaptor.class);
+
+        List<BillingCodeResponse> responses = billingAdaptor.getBillingCodes("CODE:1231231");
+        log.info("1. Result: {}", responses);
+
+        CreateCodeResponse createCodeResponse = billingAdaptor.create(List.of(1231231L));
+        log.info("2. Result: {}", createCodeResponse);
+
+        CreateCodeResponse codeResponse = billingAdaptor.createBillingCode(List.of(9_000L, 8_000L, 7_000L));
+        log.info("3. Result: {}", codeResponse);
     }
 
 }
