@@ -1,5 +1,9 @@
-package com.cowaine.joisfe.part10.config.cache;
+package com.cowaine.joisfe.part10.config;
 
+import com.cowaine.joisfe.part10.adapter.cache.HotelCacheKey;
+import com.cowaine.joisfe.part10.adapter.cache.HotelCacheKeySerializer;
+import com.cowaine.joisfe.part10.adapter.cache.HotelCacheValue;
+import com.cowaine.joisfe.part10.adapter.cache.HotelCacheValueSerializer;
 import io.lettuce.core.ClientOptions;
 import io.lettuce.core.SocketOptions;
 import java.time.Duration;
@@ -19,6 +23,9 @@ public class CacheConfig {
     @Bean
     public RedisConnectionFactory cacheRedisConnectionFactory() {
         RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration("127.0.0.1", 6379);
+//        configuration.setDatabase(0);
+//        configuration.setUsername("username");
+//        configuration.setPassword("password");
 
         final SocketOptions socketOptions = SocketOptions.builder().connectTimeout(Duration.ofSeconds(10)).build();
         final ClientOptions clientOptions = ClientOptions.builder().socketOptions(socketOptions).build();
@@ -42,3 +49,4 @@ public class CacheConfig {
     }
 
 }
+

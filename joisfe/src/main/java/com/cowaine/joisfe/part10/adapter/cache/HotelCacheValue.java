@@ -1,4 +1,4 @@
-package com.cowaine.joisfe.part10.config.cache;
+package com.cowaine.joisfe.part10.adapter.cache;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -1,8 +1,5 @@
-package com.cowaine.joisfe.part10.adapter;
+package com.cowaine.joisfe.part10.adapter.cache;
 
-import com.cowaine.joisfe.part10.adapter.cache.CacheAdapter;
-import com.cowaine.joisfe.part10.adapter.cache.HotelCacheKey;
-import com.cowaine.joisfe.part10.adapter.cache.HotelCacheValue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
