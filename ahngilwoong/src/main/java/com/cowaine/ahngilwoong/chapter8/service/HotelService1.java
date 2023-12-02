@@ -17,11 +17,11 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Service
-public class HotelService {
+public class HotelService1 {
 
     private HotelRepository hotelRepository;
 
-    public HotelService(HotelRepository hotelRepository) {
+    public HotelService1(HotelRepository hotelRepository) {
         this.hotelRepository = hotelRepository;
     }
 

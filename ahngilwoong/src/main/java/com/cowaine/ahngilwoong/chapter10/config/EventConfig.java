@@ -1,5 +1,7 @@
 package com.cowaine.ahngilwoong.chapter10.config;
 
+import com.cowaine.ahngilwoong.chapter10.adapter.event.EventListener;
+import com.cowaine.ahngilwoong.chapter10.adapter.event.EventMessage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.MessageListener;

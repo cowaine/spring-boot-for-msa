@@ -1,5 +1,9 @@
 package com.cowaine.ahngilwoong.chapter10.config;
 
+import com.cowaine.ahngilwoong.chapter10.adapter.cache.HotelCacheKey;
+import com.cowaine.ahngilwoong.chapter10.adapter.cache.HotelCacheKeySerializer;
+import com.cowaine.ahngilwoong.chapter10.adapter.cache.HotelCacheValue;
+import com.cowaine.ahngilwoong.chapter10.adapter.cache.HotelCacheValueSerializer;
 import io.lettuce.core.ClientOptions;
 import io.lettuce.core.SocketOptions;
 import lombok.extern.slf4j.Slf4j;

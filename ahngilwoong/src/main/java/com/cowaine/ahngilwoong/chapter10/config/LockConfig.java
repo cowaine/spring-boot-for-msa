@@ -1,5 +1,7 @@
 package com.cowaine.ahngilwoong.chapter10.config;
 
+import com.cowaine.ahngilwoong.chapter10.adapter.lock.LockKey;
+import com.cowaine.ahngilwoong.chapter10.adapter.lock.LockKeySerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;

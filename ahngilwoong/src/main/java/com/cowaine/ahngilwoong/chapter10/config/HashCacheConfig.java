@@ -1,5 +1,6 @@
 package com.cowaine.ahngilwoong.chapter10.config;
 
+import com.cowaine.ahngilwoong.chapter10.adapter.cache.HotelCacheValue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
