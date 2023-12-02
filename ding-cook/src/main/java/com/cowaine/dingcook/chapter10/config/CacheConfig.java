@@ -1,9 +1,9 @@
 package com.cowaine.dingcook.chapter10.config;
 
-import com.cowaine.dingcook.chapter10.cache.HotelCacheKey;
-import com.cowaine.dingcook.chapter10.cache.HotelCacheKeySerializer;
-import com.cowaine.dingcook.chapter10.cache.HotelCacheValue;
-import com.cowaine.dingcook.chapter10.cache.HotelCacheValueSerializer;
+import com.cowaine.dingcook.chapter10.adapter.cache.HotelCacheKey;
+import com.cowaine.dingcook.chapter10.adapter.cache.HotelCacheKeySerializer;
+import com.cowaine.dingcook.chapter10.adapter.cache.HotelCacheValue;
+import com.cowaine.dingcook.chapter10.adapter.cache.HotelCacheValueSerializer;
 import io.lettuce.core.ClientOptions;
 import io.lettuce.core.SocketOptions;
 import java.time.Duration;
