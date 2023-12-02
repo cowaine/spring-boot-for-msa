@@ -1,5 +1,6 @@
 package com.cowaine.corock.chapter10.config;
 
+import com.cowaine.corock.chapter10.service.HotelKeyGenerator;
 import io.lettuce.core.ClientOptions;
 import io.lettuce.core.SocketOptions;
 import org.springframework.cache.CacheManager;
@@ -83,6 +84,11 @@ public class BasicCacheConfig {
                 .cacheDefaults(defaultConfig)
                 .withInitialCacheConfigurations(configurations)
                 .build();
+    }
+
+    @Bean
+    public HotelKeyGenerator hotelKeyGenerator() {
+        return new HotelKeyGenerator();
     }
 
 }
