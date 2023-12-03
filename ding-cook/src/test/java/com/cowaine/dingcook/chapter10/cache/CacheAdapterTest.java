@@ -1,5 +1,9 @@
 package com.cowaine.dingcook.chapter10.cache;
 
+import com.cowaine.dingcook.chapter10.adapter.cache.CacheAdapter;
+import com.cowaine.dingcook.chapter10.adapter.cache.HotelCacheKey;
+import com.cowaine.dingcook.chapter10.adapter.cache.HotelCacheValue;
+import com.cowaine.dingcook.chapter10.config.CacheConfig;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.cowaine.dingcook.chapter10.cache;
+package com.cowaine.dingcook.chapter10.adapter.cache;
 
 import java.time.Duration;
 import lombok.extern.slf4j.Slf4j;

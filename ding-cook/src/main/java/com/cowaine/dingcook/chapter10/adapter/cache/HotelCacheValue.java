@@ -1,4 +1,4 @@
-package com.cowaine.dingcook.chapter10.cache;
+package com.cowaine.dingcook.chapter10.adapter.cache;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
