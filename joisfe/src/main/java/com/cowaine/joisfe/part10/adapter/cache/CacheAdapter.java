@@ -1,7 +1,5 @@
-package com.cowaine.joisfe.part10.adapter;
+package com.cowaine.joisfe.part10.adapter.cache;
 
-import com.cowaine.joisfe.part10.config.cache.HotelCacheKey;
-import com.cowaine.joisfe.part10.config.cache.HotelCacheValue;
 import java.time.Duration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;

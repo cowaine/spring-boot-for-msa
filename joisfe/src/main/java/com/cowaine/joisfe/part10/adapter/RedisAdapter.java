@@ -5,12 +5,12 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
-@Component
-public class RedisAdapter {
-
-    @Autowired
-    private RedisTemplate redisTemplate;
-
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
-}
+//@Component
+//public class RedisAdapter {
+//
+//    @Autowired
+//    private RedisTemplate redisTemplate;
+//
+//    @Autowired
+//    private StringRedisTemplate stringRedisTemplate;
+//}

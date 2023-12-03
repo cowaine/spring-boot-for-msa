@@ -1,4 +1,4 @@
-package com.cowaine.joisfe.part10.config.cache;
+package com.cowaine.joisfe.part10.adapter.cache;
 
 import java.nio.charset.Charset;
 import java.util.Objects;
