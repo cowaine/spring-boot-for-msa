@@ -17,11 +17,6 @@ public class AhngilwoongApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext ctxt = SpringApplication.run(AhngilwoongApplication.class, args);
 
-        WebClientBillingAdapter billingAdapter = ctxt.getBean(WebClientBillingAdapter.class);
-
-        CreateCodeResponse codeResponse =
-            billingAdapter.createBillingCode(List.of(19000L, 18000L, 17000L));
-        log.info("Result : {}", codeResponse);
     }
 
 }
