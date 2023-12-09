@@ -10,10 +10,10 @@ import lombok.ToString;
 @ToString
 public class HotelRequest {
 
-    private String hotelName;
+    private Long hotelName;
 
     @Builder
-    public HotelRequest(String hotelName) {
+    public HotelRequest(Long hotelName) {
         this.hotelName = hotelName;
     }
 
