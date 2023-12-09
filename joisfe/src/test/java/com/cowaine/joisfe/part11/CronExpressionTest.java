@@ -1,8 +1,3 @@
-/*
- * Copyright 2023 NHN (https://nhn.com) and others.
- * © NHN Corp. All rights reserved.
- */
-
 package com.cowaine.joisfe.part11;
 
 import java.time.LocalDateTime;
