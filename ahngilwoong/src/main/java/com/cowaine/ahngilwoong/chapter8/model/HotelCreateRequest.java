@@ -8,6 +8,22 @@ import lombok.Setter;
 @Setter
 public class HotelCreateRequest {
 
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Integer getRoomCount() {
+        return roomCount;
+    }
+
     private String name;
     private String address;
     private String phoneNumber;
