@@ -1,6 +1,8 @@
 package com.cowaine.corock.chapter11.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
@@ -31,6 +33,16 @@ public class SchedulingConfig implements SchedulingConfigurer {
         taskScheduler.initialize();                             // 객체를 초기화해야 함
 
         taskRegistrar.setTaskScheduler(taskScheduler);          // TaskScheduler 구현체 설정
+    }
+
+    @Bean
+    public TaskScheduler taskScheduler() {
+        ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
+        taskScheduler.setPoolSize(10);
+        taskScheduler.setThreadNamePrefix("TaskScheduler-Bean-");
+        taskScheduler.initialize();
+
+        return taskScheduler;
     }
 
 }
