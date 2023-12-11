@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-@Service
+@Service("HotelService08")
 @RequiredArgsConstructor
 public class HotelService {
 
