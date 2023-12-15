@@ -30,4 +30,24 @@ public class HotelResponse {
 
         return hotelResponse;
     }
+
+    public Long getHotelId() {
+        return hotelId;
+    }
+
+    public HotelStatus getHotelStatus() {
+        return hotelStatus;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
 }
