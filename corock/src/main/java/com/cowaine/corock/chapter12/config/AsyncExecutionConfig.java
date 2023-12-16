@@ -1,5 +1,6 @@
 package com.cowaine.corock.chapter12.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -24,6 +25,11 @@ public class AsyncExecutionConfig implements AsyncConfigurer {
         threadPoolTaskExecutor.afterPropertiesSet();
 
         return threadPoolTaskExecutor;
+    }
+
+    @Bean(name = "asyncExecutor")
+    public Executor asyncExecutor() {
+        return this.getExecutor();
     }
 
 }
