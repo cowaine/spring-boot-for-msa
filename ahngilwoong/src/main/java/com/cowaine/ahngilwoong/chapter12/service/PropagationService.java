@@ -12,6 +12,7 @@ public class PropagationService {
         log.info("propagation of hotel event");
     }
 
+
     public void propagateResourceEvent() {
         log.info("propagation of resource event");
     }
