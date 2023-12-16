@@ -39,11 +39,7 @@ import java.util.stream.IntStream;
 public class CorockApplication {
 
     public static void main(String[] args) {
-        SpringApplicationBuilder applicationBuilder = new SpringApplicationBuilder(CorockApplication.class);
-        SpringApplication application = applicationBuilder.build();
-        application.addListeners(new ApplicationEventListener());
-
-        ConfigurableApplicationContext ctx = application.run(args);
+        SpringApplication.run(CorockApplication.class, args);
 
         // CorockApplication.p99(ctx);
         // CorockApplication.p110(ctx);
@@ -56,6 +52,16 @@ public class CorockApplication {
         // CorockApplication.testAop(ctx);
 
         // CorockApplication.p603(ctx);
+
+        // CorockApplication.p742(args);
+    }
+
+    private static void p742(String[] args) {
+        SpringApplicationBuilder applicationBuilder = new SpringApplicationBuilder(CorockApplication.class);
+        SpringApplication application = applicationBuilder.build();
+        application.addListeners(new ApplicationEventListener());
+
+        ConfigurableApplicationContext ctx = application.run(args);
     }
 
     private static void p99(ConfigurableApplicationContext ctx) {
