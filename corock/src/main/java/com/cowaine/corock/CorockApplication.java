@@ -10,10 +10,12 @@ import com.cowaine.corock.chapter07.service.DisplayService;
 import com.cowaine.corock.chapter09.adaptor.BillingAdaptor;
 import com.cowaine.corock.chapter09.billing.BillingCodeResponse;
 import com.cowaine.corock.chapter09.billing.CreateCodeResponse;
+import com.cowaine.corock.chapter12.event.server.ApplicationEventListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -50,6 +52,16 @@ public class CorockApplication {
         // CorockApplication.testAop(ctx);
 
         // CorockApplication.p603(ctx);
+
+        // CorockApplication.p742(args);
+    }
+
+    private static void p742(String[] args) {
+        SpringApplicationBuilder applicationBuilder = new SpringApplicationBuilder(CorockApplication.class);
+        SpringApplication application = applicationBuilder.build();
+        application.addListeners(new ApplicationEventListener());
+
+        ConfigurableApplicationContext ctx = application.run(args);
     }
 
     private static void p99(ConfigurableApplicationContext ctx) {
