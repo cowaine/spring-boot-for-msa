@@ -56,3 +56,36 @@ spring:
     sentinel:
       master: REDIS_MASTER_NAME
       nodes: 127.0.0.1:19999, 127.0.0.1:19998, 127.0.0.1:19997
+
+springtour:
+  domain:
+    name: https://springtour.io #Key=springtour.domain.name
+  kafka:
+    bootstrap-servers: #List 형태 선언
+      - 10.1.1.100
+      - 10.1.1.101
+      - 10.1.1.102
+    topic:
+      checkout: springtour-hotel-event-checkout
+      reservation: springtour-hotel-event-reservation
+    ack-level: 1
+    grades:
+      - subject: Math
+        score: 95
+      - subject: Science
+        score: 88
+      - subject: History
+        score: 92
+
+---
+
+grades:
+  -
+    subject: Math
+    score: 95
+  -
+    subject: Science
+    score: 88
+  -
+    subject: History
+    score: 92
