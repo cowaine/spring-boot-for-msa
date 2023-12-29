@@ -1,0 +1,42 @@
+server:
+  port: 18000
+  tomcat:
+    connection-timeout: 30s
+    threads:
+      max: 100
+      min-spare: 100
+    accesslog:
+      enabled: true
+      suffix: log
+      prefix: access_log
+      rename-on-rotate: true
+
+spring:
+  main:
+    web-application-type: servlet
+  # JPA configuration
+  jpa:
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        generate_statistics: false
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: none
+  # DataSource type configuration
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/tour?serverTimezone=UTC
+    # Hikari DataSource Configuration
+    hikari:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/tour?serverTimezone=UTC
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 12345
+      connection-timeout: 5000
+      maximum-pool-size: 5
+      max-lifetime: 1800000
+      idle-timeout: 600000
+      connection-test-query: select 1

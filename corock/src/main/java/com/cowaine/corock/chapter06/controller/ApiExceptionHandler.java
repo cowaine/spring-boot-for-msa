@@ -26,7 +26,8 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception e) {
-        return new ResponseEntity<>(new ErrorResponse("system error"), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(new ErrorResponse("system error: " + e.getMessage()),
+                                    HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

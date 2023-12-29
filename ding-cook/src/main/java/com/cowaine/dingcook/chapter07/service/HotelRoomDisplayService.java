@@ -20,9 +20,9 @@ public class HotelRoomDisplayService {
         this.threadPoolTaskExecutor = threadPoolTaskExecutor;
     }
 
-    public HotelRoomResponse getHotelRoomById(Long id) {
-        HotelRoomEntity hotelRoomEntity = hotelRoomRepository.findById(id);
-        threadPoolTaskExecutor.execute(() -> log.warn("entity :{}", hotelRoomEntity.toString()));
-        return HotelRoomResponse.from(hotelRoomEntity);
-    }
+//    public HotelRoomResponse getHotelRoomById(Long id) {
+//        HotelRoomEntity hotelRoomEntity = hotelRoomRepository.findById(id);
+//        threadPoolTaskExecutor.execute(() -> log.warn("entity :{}", hotelRoomEntity.toString()));
+//        return HotelRoomResponse.from(hotelRoomEntity);
+//    }
 }

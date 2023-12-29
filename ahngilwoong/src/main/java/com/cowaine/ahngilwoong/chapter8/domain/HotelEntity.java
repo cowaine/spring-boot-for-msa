@@ -74,4 +74,32 @@ public class HotelEntity extends AbstractManageEntity {
         this.roomCount += hotelRoomEntities.size();
         this.hotelRoomEntities.addAll(hotelRoomEntities);
     }
+
+    public Long getHotelId() {
+        return hotelId;
+    }
+
+    public HotelStatus getStatus() {
+        return status;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Integer getRoomCount() {
+        return roomCount;
+    }
+
+    public List<HotelRoomEntity> getHotelRoomEntities() {
+        return hotelRoomEntities;
+    }
 }

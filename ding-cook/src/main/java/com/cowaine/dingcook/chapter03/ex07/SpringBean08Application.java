@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Slf4j
-@SpringBootApplication
+//@SpringBootApplication
 public class SpringBean08Application {
 
     public static void main(String[] args) {

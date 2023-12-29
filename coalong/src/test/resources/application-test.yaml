@@ -1,0 +1,24 @@
+spring:
+  main:
+    web-application-type: none
+  jpa:
+    open-in-view: false
+    show-sql: true
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+        generate_statistics: true
+        dialect: org.hibernate.dialect.H2Dialect
+        hbm2ddl:
+    hibernate:
+      ddl-auto: create-drop
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    generate-ddl: true
+  config:
+    activate:
+      on-profile: test
+  h2:
+    console:
+      enabled: true

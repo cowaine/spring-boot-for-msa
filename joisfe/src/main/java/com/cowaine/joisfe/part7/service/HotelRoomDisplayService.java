@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * @since 1.0
  */
 @Slf4j
-@Service
+//@Service
 public class HotelRoomDisplayService {
 
     private final HotelRoomRepository hotelRoomRepository;

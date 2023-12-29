@@ -1,6 +1,5 @@
 package com.cowaine.joisfe.part8.domain;
 
-import com.cowaine.joisfe.part7.domain.HotelRoomEntity;
 import com.cowaine.joisfe.part8.converter.HotelStatusConverter;
 import com.cowaine.joisfe.part8.service.HotelAuditListener;
 import java.util.ArrayList;
@@ -52,7 +51,7 @@ public class HotelEntity extends AbstractManageEntity {
 
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "hotels_hotel_id", referencedColumnName = "hotel_id")
-    private final List<HotelRoomEntity> hotelRoomEntities;
+    private List<HotelRoomEntity> hotelRoomEntities;
 
     public HotelEntity() {
         super();

@@ -41,3 +41,55 @@ private Long hotelId;
 @Column
 private Long hotelId;
 ```
+
+
+```java
+public class HotelReservatinoService{
+    @Transactional  // <<<<<<<<<< 1
+    public Response reserveRoomByHotelId(Long hotelId){}
+    roomReserveService.reserveRoomByID(roomId);
+    ...
+}
+
+public class RoomReserveService{
+    @Transactional   // <<<<<<<<<< 2
+    public Boolean reserveRoomById(Long roomId){...}
+}
+```
+## Propagation
+### 1. Propagation.REQUIRED
+- **보통 이거 사용 !!!!!!!**
+- 현재 진행하는 트랜잭션 있을시 이 트랜잭션에 포함,
+- 없을시 새 트랜잭션 시작 후 해당 메서드 실행
+- 2에 위 설정할 시, 이미 시작된 1번트랜잭션에 포함됨.
+- 1 실행없이 2실행시 새 트랜잭션 시작
+- 결론은 반드시 트잭 실행
+
+### 2. Propagation.REQUIRES_NEW
+- 항상 새로운 트랜잭션 시작
+- 1번 시작됐어도 2번을 새로 생성하여 실행 && 2번 시작하기 전에 1번 트랜잭션을 보류 && 2번 종료되면 1번 다시 재개
+
+### 3. Propagation.SUPPORT
+- 현재 진행중인 트랜잭션 있으면 포함, 없으면 안만들고 실행
+- 1없이 2를 직접실행시 트랜잭션 없이 쿼리가 실행됨
+
+### 4. Propagation.NOT_SUPPORT
+- 현재 진행중인 트랜잭션 있으면 실행되고 있는 트잭 보류, 트잭없이 해당 메서드 실행 && 이후 보류된 트잭 다시 시작
+- 1번 보류하고 2번 실행 후 보류된 1번 재개
+- 1번 없이 2번만 실행하더라도 1번 트잭이 없으므로 트잭없이 쿼리실행
+- 결론 : 2번은 무조건 트잭없이 실행 (2에 설정됐을 경우)
+
+### 5. Propagation.MANDATORY
+- 현재진행 트잭있을시 포함, 없을시 `TransactionalRequiredException`예외 발생
+- 반드시 트잭이 필요한 메서드에 선언할 것
+
+### 6. Propagation.NEVER
+- 트잭 있으면 예외발생, 없으면 없는채로 실행
+- 1실행시 즉시 예외발생
+- 1없이 2만 실행시 트잭없이 실행
+
+### 7. Propagation.NESTED
+- 진행하는 트잭있을시 중첩된(?!) 트잭실행, 없을시 새 트잭 생성하여 실행
+
+
+> @Transactional 애너테이션 설정된 메서드가 다른 객체로 호출될 수 있으므로 반드시 트랜잭션 실행 설정을 하는 것이 좋다.

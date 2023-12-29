@@ -1,0 +1,65 @@
+## 격리수준
+- 상황 : 멀티스레드 환경, 사용량 많은 API서버가 RDB사용하여 데이터처리.
+- 여러 스레드가 공유 데이터에 접근, 변경하는 일 발생
+- == 하나의 데이터에 여러 스레드가 동시접근, RUD등의 쿼리 실행가능
+- 동시 접근하는 스레드 갯수만큼 `여러 트랜잭션`이 겹치는 상황 발생
+- 이때 트랜잭션들을 **서로 분리**하는 방법 설정하여 정합성 유지 가능
+- 수준 높을수록 완전 분리, 순서대로 처리 : 같은 데이터에 `동시접근` 불가, 낮을 수록 `동시접근` 가능
+
+### 격리수준 높을수록
+- 부작용이 적음
+- 데이터베이스가 단위시간당 처리할 수 있는 쿼리량이 **낮아짐**
+- 데이터 관리 측면에선 좋지만, 처리량 측면에선 별로
+
+### 격리수준 낮을수록
+- 부작용 높음
+- 데이터베이스가 단위시간당 처리할 수 있는 쿼리량이 **높아짐**
+
+### 4단계 (Isolation.xxx)
+|격리수준 | 격리강도 | Dirty Read | Non-Repeatable Read | Phantom Read|
+|---|---|---|---|---|
+|Read Uncommited|낮다|o|o|o|
+|Read Commited|중간|x|o|o|
+|Repeatable Read|중간|x|x|o|
+|Serializable|높다|x|x|x|
+
+1. DEFAULT : 기본값. 디비에 설정된 격리수준 따라 작동
+    - MySQL 기본 : REPEATABLE_READ
+2. READ_UNCOMMITED
+    - 제일 낮음
+    - 커밋되지 않은 데이터 읽을 수 있음
+3. READ_COMMITTED
+    - 커밋된 데이터 읽을 수 있음
+4. REPEATABLE_READ
+    - 여러 트잭이 동일한 데이터에 접근할때 동일한 값 보장
+    - 다른 트잭이 실행한 insert쿼리는 예외
+5. SERIALIZABLE
+    - 가장 높은 격리수준
+    - 먼저 실행한 트잭이 우선권 가짐. 다른 트잭은 완전 격리
+
+## READ_UNCOMMITED , Dirty Read
+- 스레드1, 2 모두 abc -> def update 작업이 필요
+- 스레드1의 트잭1 커밋전 데이터를 읽어(`READ_UNCOMMITED`), 스레드2는 def 인줄 알고(`Dirty Read`) update가 안일어남
+- 이후 트잭1이 롤백되면서 디비엔 def 의 update 없이 abc 이게 됨
+- `Dirty Read` 방지위해서는 Read Committed로 수준 올릴것
+
+## Read Committed, Non-Repeatable Read
+- 커밋된 것만 읽기때문에 커밋전, 커밋후의 select 값이 다름
+- 스레드1의 트잭1 의 커밋전, 트잭1 의 커밋 후 시점에 따라 트잭2의 select 값이 abc -> def 로 다름(`Non-Repeatable Read`)
+- `정황성` 이 깨진다.
+- MS-SQL sefver, Oracle, PostgreSQL 등에서 기본값
+- 하나의 데이터가 `변경`되는 현상
+
+## Repeatable Read, Phantom Read
+- 트잭내에서 조회하는 데이터는 항상 같음을 보장한다 (하지만 insert되는건 못막음 : 그럼 보장안하는거 아닌가)
+- (트잭1---------------------트잭1)
+    a                       a,b
+- (       트잭2------트잭2       )
+                 +b
+- 트잭2에서 수정, 삭제는 불가능하지만, insert는 안막혀있음
+- 트잭1에서 시점에 따라 없었던 b 가 추가되어 나옴 (Phantom Read)
+
+## Serializable
+- 가장높음
+- 가장 먼저시작한 트잭이 대상 테이블을 점유. 다른 트잭의 쿼리(insert, update, delete 바로실행 x) 막음 (테이블 락)
+- 성능이 그만큼 떨어짐

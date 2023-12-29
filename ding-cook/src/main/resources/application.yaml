@@ -43,4 +43,49 @@ spring:
       max-lifetime: 1800000
       idle-timeout: 600000
       #connection-test-query: select 1
+  redis:
+    url: 127.0.0.1
+    port: 19999
+    timeout: 1s # 명령어 전달하고 결과 받을 때까지 최대 시간 설정
+    connect-timeout: 3s # 레디스 서버와 클라이언트 사이에 커넥션을 생성할 때 걸리는 최대 시간을 설정
+    # 레디스 클러스터
+    cluster:
+      nodes: 127.0.0.1:19999, 127.0.0.1:19998, 127.0.0.1:19997
+      max-redirects: 3
+    # 레디스 센티넬
+    sentinel:
+      master: REDIS_MASTER_NAME
+      nodes: 127.0.0.1:19999, 127.0.0.1:19998, 127.0.0.1:19997
 
+springtour:
+  domain:
+    name: https://springtour.io #Key=springtour.domain.name
+  kafka:
+    bootstrap-servers: #List 형태 선언
+      - 10.1.1.100
+      - 10.1.1.101
+      - 10.1.1.102
+    topic:
+      checkout: springtour-hotel-event-checkout
+      reservation: springtour-hotel-event-reservation
+    ack-level: 1
+    grades:
+      - subject: Math
+        score: 95
+      - subject: Science
+        score: 88
+      - subject: History
+        score: 92
+
+---
+
+grades:
+  -
+    subject: Math
+    score: 95
+  -
+    subject: Science
+    score: 88
+  -
+    subject: History
+    score: 92

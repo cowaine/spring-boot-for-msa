@@ -7,10 +7,15 @@ import com.cowaine.corock.chapter03.lifecycle.LifeCycleComponent;
 import com.cowaine.corock.chapter03.lifecycle.PrintableBeanPostProcessor;
 import com.cowaine.corock.chapter07.dto.HotelRequest;
 import com.cowaine.corock.chapter07.service.DisplayService;
+import com.cowaine.corock.chapter09.adaptor.BillingAdaptor;
+import com.cowaine.corock.chapter09.billing.BillingCodeResponse;
+import com.cowaine.corock.chapter09.billing.CreateCodeResponse;
+import com.cowaine.corock.chapter12.event.server.ApplicationEventListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +28,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
@@ -44,6 +50,18 @@ public class CorockApplication {
         // CorockApplication.p162(ctx);
 
         // CorockApplication.testAop(ctx);
+
+        // CorockApplication.p603(ctx);
+
+        // CorockApplication.p742(args);
+    }
+
+    private static void p742(String[] args) {
+        SpringApplicationBuilder applicationBuilder = new SpringApplicationBuilder(CorockApplication.class);
+        SpringApplication application = applicationBuilder.build();
+        application.addListeners(new ApplicationEventListener());
+
+        ConfigurableApplicationContext ctx = application.run(args);
     }
 
     private static void p99(ConfigurableApplicationContext ctx) {
@@ -159,6 +177,19 @@ public class CorockApplication {
         DisplayService displayService = ctx.getBean(DisplayService.class);
         displayService.getHotelsByName(new HotelRequest("Ragged Point Inn"));
                 // .forEach(hotelResponse -> log.info("response: {}", hotelResponse));
+    }
+
+    private static void p603(ConfigurableApplicationContext ctx) {
+        BillingAdaptor billingAdaptor = ctx.getBean(BillingAdaptor.class);
+
+        List<BillingCodeResponse> responses = billingAdaptor.getBillingCodes("CODE:1231231");
+        log.info("1. Result: {}", responses);
+
+        CreateCodeResponse createCodeResponse = billingAdaptor.create(List.of(1231231L));
+        log.info("2. Result: {}", createCodeResponse);
+
+        CreateCodeResponse codeResponse = billingAdaptor.createBillingCode(List.of(9_000L, 8_000L, 7_000L));
+        log.info("3. Result: {}", codeResponse);
     }
 
 }
