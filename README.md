@@ -1,8 +1,9 @@
 # Spring Boot for MSA
 
-## 스터디 참석 인원
+This repository is a collective effort of individuals gathered to enchance their development skills in a superior environment. It serves as as repository to document and share the study materials based on the content learned from the book [스프링 부트로 개발하는 MSA 컴포넌트](https://www.yes24.com/Product/Goods/115306377).
 
-|          [ahngilwoong](https://github.com/ahngilwoong)           |              [coalong](https://github.com/coalong)               |               [CoRock](https://github.com/corock)                |                [ParkJiHo](https://github.com/crupy)                |             [ding_cook](https://github.com/bunsung92)              |                [JoisFe](https://github.com/joisfe)                 |          [Youngju Jang](https://github.com/youngju-jang)           |
-|:----------------------------------------------------------------:|:----------------------------------------------------------------:|:----------------------------------------------------------------:|:------------------------------------------------------------------:|:------------------------------------------------------------------:|:------------------------------------------------------------------:|:------------------------------------------------------------------:|
-|                               안길웅                                |                               민아영                                |                               이제훈                                |                                박지호                                 |                                김훈민                                 |                                조재철                                 |                                장영주                                 |
-| <img src="https://avatars.githubusercontent.com/u/65801290?v=4"> | <img src="https://avatars.githubusercontent.com/u/71637466?v=4"> | <img src="https://avatars.githubusercontent.com/u/38161720?v=4"> | <img src="https://avatars.githubusercontent.com/u/84119178?v=4" /> | <img src="https://avatars.githubusercontent.com/u/53285909?v=4" /> | <img src="https://avatars.githubusercontent.com/u/90208100?v=4" /> | <img src="https://avatars.githubusercontent.com/u/77484084?v=4" /> |
+## Contributors
+
+<a href="https://github.com/cowaine/spring-boot-for-msa/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=cowaine/spring-boot-for-msa" />
+</a>
