@@ -4,6 +4,6 @@ This repository is a collective effort of individuals gathered to enhance their 
 
 ## Contributors
 
-<a href="https://github.com/cowaine/spring-boot-for-msa/graphs/contributors" target="_blank">
-  <img src="https://contrib.rocks/image?repo=cowaine/spring-boot-for-msa" />
+<a href="https://github.com/cowaine/spring-boot-for-msa/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=cowaine/spring-boot-for-msa" alt="contributors">
 </a>
