@@ -35,7 +35,7 @@ import java.util.stream.IntStream;
 
 @Slf4j
 @SpringBootApplication
-@ConfigurationPropertiesScan(basePackages = { "com.cowaine.corock.chapter06" })
+// @ConfigurationPropertiesScan(basePackages = { "com.cowaine.corock.chapter06" })
 public class CorockApplication {
 
     public static void main(String[] args) {

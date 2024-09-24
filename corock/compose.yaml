@@ -1,0 +1,25 @@
+services:
+  # https://hub.docker.com/_/postgres
+  rdb:
+    container_name: 'postgres-dbms'
+    image: postgres:14.13
+    platform: linux/x86_64
+    restart: always
+    volumes:
+      - ~/data/dbms/postgres:/var/lib/postgresql/data
+      # - ~/data/dbms/postgres/initdb.d:/docker-entrypoint-initdb.d
+    env_file:
+      - .env
+    ports:
+      - 5431:5432
+
+  # https://hub.docker.com/_/redis
+  redis:
+    container_name: 'redis-cache'
+    image: redis:7.4
+    platform: linux/x86_64
+    restart: always
+    volumes:
+      - ~/data/cache/redis:/data
+    ports:
+      - 6379:6379

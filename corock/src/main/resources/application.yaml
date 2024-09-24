@@ -33,7 +33,7 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
-      jdbc-url: jdbc:postgresql://127.0.0.1:5432/vroong?serverTimezone=UTC
+      jdbc-url: jdbc:postgresql://127.0.0.1:5431/vroong?serverTimezone=UTC
       driver-class-name: org.postgresql.Driver
       username: dongmyo
       password: 123$
