@@ -20,7 +20,7 @@ public class ScheduledTask {
      *     <li>정의된 메서드의 반환 타입은 <code>void</code> 이며, 인자를 정의하면 안 된다. 또한 해당 메서드의 접근 지정자는 <code>public</code> 이어야 한다.</li>
      * </ul>
      */
-    @Scheduled(fixedRate = 1_000L)
+    // @Scheduled(fixedRate = 1_000L)
     public void triggerEvent() {
         log.info("Triggered Event");
     }
